@@ -55,3 +55,9 @@ test("every scenario-specific rule names a mistake type (so Diagnose can explain
     .concat((content.roleplays || []).flatMap(r => Object.values(r.nodes).flatMap(n => n.spec?.forbid || [])));
   for (const f of all) assert.ok(ids.has(f.habit), `forbid "${f.message}" needs a valid habit`);
 });
+test("topic words are specific (no tiny or generic stems the banana trick could match)", () => {
+  const generic = new Set(["which", "what", "the", "and", "you", "your", "for", "with", "this", "that", "will", "can", "get", "make", "thing", "time"]);
+  for (const s of content.scenarios) for (const w of s.topic) {
+    assert.ok(w.length >= 2 && !generic.has(w) && !/^\d$/.test(w), `${s.id}: topic word "${w}" is too generic`);
+  }
+});

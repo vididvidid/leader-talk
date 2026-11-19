@@ -1,12 +1,14 @@
 {
   "name": "leader-talk",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "private": true,
   "description": "Offline, AI-free practice app for confident, respectful workplace communication",
   "type": "module",
   "scripts": {
     "test": "node --test tests/",
-    "serve": "python3 -m http.server 8080 --directory web"
+    "serve": "python3 -m http.server 8080 --directory web",
+    "try": "node tools/try.mjs",
+    "build:scenarios": "python3 tools/build_scenarios.py && python3 tools/build_roleplays.py"
   },
   "license": "MIT"
 }

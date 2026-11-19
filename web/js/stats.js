@@ -25,6 +25,8 @@ const GOVERNORS = new Set(("interested depends depend depending dependent based 
   "protected benefit apply applied agree agreed qualified accused congratulate believe believed dream dreamed concentrate").split(" "));
 // insertion is only checked before these: Wikipedia has too little "you" to judge "send you" vs "send to you"
 const OBJ_PRON = ["me", "him", "her", "us", "them"];
+// verbs that need a preposition before a person ("listen to me"); others ("message her", "tell him") don't
+const INSERT_AFTER = new Set("listen listened listening explain explained explaining reply replied replying talk talked talking speak spoke speaking apologise apologize apologised apologized describe described suggest suggested say said complain complained belong belongs happen happened".split(" "));
 
 export function fnv1a(s) {
   let h = 0x811c9dc5;
@@ -102,7 +104,7 @@ export class Stats {
       }
       for (let i = 1; i < t.length - 1; i++) {
         const a = t[i], b = t[i + 1];
-        if (!OBJ_PRON.includes(b) || a === "<s>" || PRON.includes(a) || ART.includes(a) || PREP.includes(a)) continue;
+        if (!OBJ_PRON.includes(b) || !INSERT_AFTER.has(a)) continue;
         if (c(`${a} ${b}`) > 0) continue;
         let best = null;
         for (const y of INSERTABLE) {

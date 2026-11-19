@@ -7,7 +7,7 @@ export const STATE_VERSION = 2;
 
 export function emptyState() {
   return { version: STATE_VERSION, attempts: [], scenarios: {}, quizzes: {}, surgery: {}, reallife: [], days: [],
-    roleplays: {}, roleplayTurns: [], diagnoseSeen: {}, diagnose: { rounds: 0, spotted: 0, missed: 0, extra: 0, byHabit: {} } };
+    roleplays: {}, roleplayTurns: [], diagnoseSeen: {}, reports: [], diagnose: { rounds: 0, spotted: 0, missed: 0, extra: 0, byHabit: {} } };
 }
 
 export function migrate(s) {
@@ -183,4 +183,15 @@ export function recordDiagnose(state, key, picked, now = Date.now()) {
   for (const h of key) { const b = d.byHabit[h] ||= { seen: 0, spotted: 0 }; b.seen++; if (picked.has(h)) b.spotted++; }
   markDay(state, now);
   return { spotted, missed, extra };
+}
+
+/** Validate and migrate a backup file's text. Throws an Error with a readable message. */
+export function parseBackup(text) {
+  let data;
+  try { data = JSON.parse(text); } catch { throw new Error("That file isn't a valid backup (not JSON)."); }
+  const st = data && data.app === "leader-talk" ? data.state : data;
+  if (!st || typeof st !== "object" || !Array.isArray(st.attempts) || typeof st.scenarios !== "object" || st.scenarios === null) {
+    throw new Error("That file isn't a Leader Talk backup.");
+  }
+  return migrate(st);
 }

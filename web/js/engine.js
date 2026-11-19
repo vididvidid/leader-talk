@@ -21,6 +21,8 @@ export const MOVES = {
       String.raw`\bunderstood\b`, String.raw`\bgood (catch|point|question)\b`, String.raw`\bfair (point|question|enough)\b`,
       String.raw`\bi can see (why|how|that)\b`, String.raw`\bthat matters\b`, String.raw`\bi take (that|this) seriously\b`,
       String.raw`\bi'd (like|love|be happy) to help\b`, String.raw`\bhappy to\b`,
+      String.raw`\bi (really |truly |do )?appreciate\b`, String.raw`\bthanks? (a lot|so much|very much)\b`, String.raw`\bi hear (you|the|your)\b`,
+      String.raw`\bi (understand|see) (the|your|how|why|that)\b`,
     ],
   },
   specific_question: {
@@ -30,6 +32,7 @@ export const MOVES = {
       String.raw`\b(which|what|where|when|how|who|whose)\b[^?.!]*\?`,
       String.raw`\b(could|can|would|will) you\b[^?.!]*\?`,
       String.raw`\b(is|are|does|do|did|should|shall) (it|this|that|the|we|they|you|there|their)\b[^?.!]*\?`,
+      String.raw`(^|[.!?:]\s+)(is|are|does|do|did|should|shall|can|could|would|will|was|were|has|have)\b[^?.!]*\?`,
     ],
   },
   summarize_back: {
@@ -41,7 +44,7 @@ export const MOVES = {
       String.raw`\bto make sure i\b`, String.raw`\bdo you mean\b`, String.raw`\bare you saying\b`, String.raw`\bso the idea is\b`,
       String.raw`\bin other words\b`, String.raw`\bmy understanding is\b`, String.raw`\blet me (repeat|confirm|check i)\b`,
       String.raw`\bso (we|it|everything|the)\b[^?]*\?`, String.raw`\bi follow(ed)?\b`, String.raw`\bwhen you say\b`,
-      String.raw`\bi (understood|got|get|understand) the\b[^.?!]*\bpart\b`,
+      String.raw`\bi (understood|got|get|understand) the\b[^.?!]*\bpart\b`, String.raw`\bso (two|three|four|five|the) (things|tasks|steps|items|parts)\b`,
     ],
   },
   ownership: {
@@ -90,7 +93,8 @@ export const MOVES = {
       String.raw`\bi don't think\b`, String.raw`\bin my (view|opinion|experience)\b`, String.raw`\bmy (concern|worry|view|read|take)\b`,
       String.raw`\bi'm (concerned|worried|not (sure|convinced))\b`, String.raw`\bi (think|believe|feel)\b`, String.raw`\bthe risk\b`,
       String.raw`\bi see it (a bit )?differently\b`, String.raw`\bi'd push back\b`, String.raw`\bi disagree\b`,
-      String.raw`\bi'm not comfortable\b`, String.raw`\bi'd be careful\b`,
+      String.raw`\bi'm not comfortable\b`, String.raw`\bi'd be careful\b`, String.raw`\bone concern\b`, String.raw`\bi'm not sure i agree\b`,
+      String.raw`\bi'd (change|prefer|choose|pick|go with|keep)\b`,
     ],
   },
   reason: {
@@ -100,6 +104,8 @@ export const MOVES = {
       String.raw`\bbecause\b`, String.raw`\bsince\b`, String.raw`\bwhich means\b`, String.raw`\bthat means\b`, String.raw`\bso that\b`,
       String.raw`\bthe reason\b`, String.raw`\b(that gives|which gives|so that's|that's roughly|that's around|that's about)\b`,
       String.raw`\bif we\b.*\b(will|could|would|might|may)\b`, String.raw`\botherwise\b`, String.raw`\bit's (blocking|needed|required)\b`,
+      String.raw`,\s*so\b`, String.raw`,\s*which (means|makes|slows|blocks|costs|delays|saves|hurts|helps|suits|fits|is why)\b`,
+      String.raw`\b(could|would|will|can) (save|reduce|cut|help|improve|speed|lower)\b`, String.raw`\bdepends on\b`,
     ],
   },
   admit_gap: {
@@ -107,7 +113,7 @@ export const MOVES = {
     tip: "Say what you don't know, without an apology (\"I don't have the cost numbers with me.\").",
     patterns: [
       String.raw`\bi don't (know|have|remember|recall)\b`, String.raw`\bi'm not (sure|certain|familiar)\b`,
-      String.raw`\bi haven't (checked|seen|looked|worked|used|memori[sz]ed)`, String.raw`\bnot (off the top of my head|offhand)\b`,
+      String.raw`\bi haven't\b`, String.raw`^\s*not (yet|really|in|quite)\b`, String.raw`\bnot (off the top of my head|offhand)\b`,
       String.raw`\bi don't want to guess\b`, String.raw`\bi'd (need|have) to check\b`, String.raw`\bnot (100|a hundred) ?%`,
     ],
   },
@@ -120,6 +126,7 @@ export const MOVES = {
       String.raw`\b(i've|i have) (seen|checked|found|noticed|tested)\b`, String.raw`\bi can confirm\b`,
       String.raw`\bwhat i'm (sure|confident|certain) (of|about)\b`, String.raw`\bi'm (sure|confident|certain) (that|about|of)\b`,
       String.raw`\b(on average|average case|typically|usually|in general)\b`,
+      String.raw`\b(i've|i have) (used|done|worked|built|deployed|run|led)\b`,
     ],
   },
   structure: {
@@ -130,7 +137,7 @@ export const MOVES = {
       String.raw`\bon one hand\b`, String.raw`\bmy (first|initial) (thought|take|reaction|guess)\b`,
       String.raw`\boff the top of my head\b`, String.raw`\bthinking (out loud|aloud)\b`, String.raw`\blet me think\b`,
       String.raw`\bstart (with|by)\b`, String.raw`\blet me (reason|work|walk|break)\b`, String.raw`\bthen\b.*\bthen\b`, String.raw`\b(step one|to begin)\b`,
-      String.raw`\btwo possibilities\b`,
+      String.raw`\btwo possibilities\b`, String.raw`\b(two|three|a few) (reasons|options|parts|steps|ideas|points|questions|risks|possibilities|highlights)\b`,
     ],
   },
   accept_point: {
