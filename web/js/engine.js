@@ -329,7 +329,7 @@ export function analyze(text, spec = {}) {
     const mv = resolveMove(m);
     let scope = mv.first_sentence ? first : t;
     let hit = findMove(mv, scope);
-    if (!hit && mv.first_sentence && sents.length > 1 && /^\s*(sorry|ok|okay|thanks?|hi|hello)\b[^.!?]{0,25}$/i.test(first)) {
+    if (!hit && mv.first_sentence && sents.length > 1 && /^\s*(sorry|ok|okay|thanks?|hi|hello|yes|no|not quite|not really|well|understood|one thing)\b[^.!?]{0,25}[.!?]?$/i.test(first)) {
       hit = findMove(mv, sents[1]); // allow a very short greeting/acknowledgement before the fact
     }
     if (hit) found.push({ id: mv.id, label: mv.label, hit: hit.trim(), principle: mv.principle });
@@ -383,7 +383,7 @@ export function analyze(text, spec = {}) {
     if (!m) continue;
     const h = m[0].toLowerCase();
     if (issues.some(i => i.hit.length > 2 && (h.includes(i.hit.toLowerCase()) || i.hit.toLowerCase().includes(h)))) continue;
-    issues.push({ id: "forbid", kind: f.kind || "weak", hit: m[0].trim(), message: f.message, fix: f.fix || "", principle: f.principle || "gibb" });
+    issues.push({ id: "forbid", kind: f.kind || "weak", hit: m[0].trim(), message: f.message, fix: f.fix || "", principle: f.principle || "gibb", habit: f.habit });
   }
 
   // relevance (Grice: Relation)

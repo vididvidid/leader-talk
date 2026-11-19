@@ -2,11 +2,16 @@ import { analyze, specFor } from "./engine.js";
 import { PRINCIPLES } from "./research.js";
 import * as P from "./progress.js";
 import { loadState, saveState, requestPersistence } from "./store.js";
+import { HABITS, habitsOf, habitReport } from "./habits.js";
+import { step as rpStep, specOf as rpSpec } from "./roleplay.js";
+import { buildPool, nextItem } from "./diagnose.js";
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const app = $("#app");
-let C, S; // content, state
+let C, S, POOL; // content, state, diagnose pool
+const PRESSURE = { 1: "🙂 friendly", 2: "😐 neutral", 3: "😠 hostile / public" };
+const pressureTag = p => `<span class="tag p${p || 2}">${PRESSURE[p || 2]}</span>`;
 const SKILL = id => C.skills.find(s => s.id === id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const save = () => saveState(S);
@@ -82,6 +87,8 @@ const views = {
       if (it.kind === "scenario") { const s = C.scenarios.find(x => x.id === it.id); title = "🎭 " + s.title; go = `scenario:${s.id}`; }
       if (it.kind === "quiz") { title = "🔍 Compare: " + SKILL(it.skill).name; go = `quiz:${it.skill}`; }
       if (it.kind === "surgery") { title = "✂️ Sentence surgery"; go = `surgery:${it.id}`; }
+      if (it.kind === "roleplay") { const r = C.roleplays.find(x => x.id === it.id); title = "💬 Role-play: " + r.title; go = `roleplay:${r.id}`; }
+      if (it.kind === "diagnose") { title = "🩺 Diagnose a reply"; go = "diagnose:x"; }
       return `<div class="item"><div><b>${esc(title)}</b><div class="small muted">${esc(it.why)}</div></div><button class="btn" data-go="${go}">Start</button></div>`;
     }).join("");
     app.innerHTML = `<h1>Today</h1>
@@ -90,6 +97,7 @@ const views = {
         <div class="card stat-card"><div class="muted small">Reviews due</div><div class="stat">${sum.due.length}</div></div>
       </div>
       <div class="card list">${items || "<p>All done. Use the Real-life log: write down a real conversation from today.</p>"}</div>
+      ${habitCard()}
       <h2>Skill map</h2>${skillMap(sum)}
       <p class="small muted">Levels are earned. 3 = passed a scenario (hints allowed). 4 = passed two different scenarios on the <b>first</b> try. 5 = also passed a hard one first try <b>and</b> a spaced review a day or more later. Failing a review drops the level.</p>
       <div class="card"><h3>How to use this</h3><ol class="small">
@@ -100,7 +108,7 @@ const views = {
         <li>Say your final version <b>out loud</b> 3 times.</li></ol></div>`;
     $$("[data-go]").forEach(b => b.onclick = () => {
       const [k, id] = b.dataset.go.split(":");
-      ({ scenario: runScenario, quiz: runQuizSkill, surgery: runSurgery })[k](id);
+      ({ scenario: runScenario, quiz: runQuizSkill, surgery: runSurgery, roleplay: runRoleplay, diagnose: () => show("diagnose") })[k](id);
     });
   },
 
@@ -125,16 +133,31 @@ const views = {
     };
   },
 
-  practice() {
+  practice(filter = 0) {
     app.innerHTML = `<h1>Practice</h1>
       <p class="muted">Write exactly what you would <b>say</b>. You get feedback and a guiding question. Model answers unlock after your second try (or once you pass).</p>
-      ${C.skills.map(s => `<div class="card list"><h3>${esc(s.name)}</h3>${C.scenarios.filter(x => x.skill === s.id).map(x => {
+      <div class="row" role="group" aria-label="Pressure">${[0, 1, 2, 3].map(p => `<button class="chip ${p === filter ? "on" : ""}" data-p="${p}">${p ? PRESSURE[p] : "All"}</button>`).join("")}</div>
+      ${C.skills.map(s => `<div class="card list"><h3>${esc(s.name)}</h3>${C.scenarios.filter(x => x.skill === s.id && (!filter || (x.pressure || 2) === filter)).map(x => {
         const st = S.scenarios[x.id];
         const badge = st ? (st.firstTryPass ? "✓ first try" : st.passes ? "✓ passed" : `best ${st.best}`) : "new";
-        return `<div class="item"><div><b>${esc(x.title)}</b> ${x.hard ? '<span class="tag hard">hard</span>' : ""}<div class="small muted">${badge}</div></div><button class="btn ghost" data-s="${x.id}">Open</button></div>`;
-      }).join("")}</div>`).join("")}`;
+        return `<div class="item"><div><b>${esc(x.title)}</b> ${x.hard ? '<span class="tag hard">hard</span>' : ""}<div class="small muted">${pressureTag(x.pressure)} ${badge}</div></div><button class="btn ghost" data-s="${x.id}">Open</button></div>`;
+      }).join("") || '<p class="small muted">None at this pressure level.</p>'}</div>`).join("")}`;
     $$("[data-s]").forEach(b => b.onclick = () => runScenario(b.dataset.s));
+    $$("[data-p]").forEach(b => b.onclick = () => views.practice(+b.dataset.p));
   },
+
+  talk() {
+    app.innerHTML = `<h1>Role-plays</h1>
+      <p class="muted">Whole conversations. The other person reacts to what you say: apologise needlessly and they get sharper; ask a specific question and they explain. There are good, mixed and bad endings.</p>
+      <div class="card list">${C.roleplays.map(r => {
+        const st = S.roleplays[r.id];
+        const badge = st ? `best: ${({ good: "✓ good ending", mixed: "◐ mixed ending", bad: "✗ bad ending" })[st.best]} · ${st.runs} run${st.runs === 1 ? "" : "s"}` : "new";
+        return `<div class="item"><div><b>${esc(r.title)}</b><div class="small muted">${pressureTag(r.pressure)} ${badge}</div></div><button class="btn ghost" data-r="${r.id}">Start</button></div>`;
+      }).join("")}</div>`;
+    $$("[data-r]").forEach(b => b.onclick = () => runRoleplay(b.dataset.r));
+  },
+
+  diagnose() { runDiagnose(); },
 
   surgery() {
     app.innerHTML = `<h1>Sentence surgery</h1>
@@ -306,6 +329,89 @@ function runSurgery(id) {
     P.recordSurgery(S, x, r, t); await save();
     $("#fb").innerHTML = `<div class="card"><p class="small muted">Original scored <b>${before.score}</b>. Problems in it: ${before.issues.map(i => "“" + esc(i.hit) + "”").join(", ") || "missing moves"}</p>` + feedbackHTML(t, r) +
       (r.passed ? `<p>Fixed. Say it out loud. ${speakBtn(t)}</p>` : `<p class="small">Keep going: rewrite and check again.</p>`) + `</div>`;
+  };
+}
+
+function habitCard() {
+  const rep = habitReport(S);
+  const d = S.diagnose;
+  const eye = d.rounds ? `<p class="small muted">Diagnose accuracy: you spotted ${Math.round(100 * d.spotted / Math.max(1, d.spotted + d.missed))}% of mistakes in ${d.rounds} round${d.rounds === 1 ? "" : "s"}.</p>` : "";
+  if (!rep.length) return eye ? `<div class="card">${eye}</div>` : "";
+  return `<div class="card"><h3>Your top habits this week</h3><ol class="habits">${rep.map(h => {
+    const trend = h.previous ? (h.count < h.previous ? `<span class="good-txt">↓ from ${h.previous}</span>` : h.count > h.previous ? `<span class="bad-txt">↑ from ${h.previous}</span>` : "same as last week") : "";
+    return `<li><b>${esc(h.name)}</b>: ${h.count}× ${trend}</li>`;
+  }).join("")}</ol><p class="small muted">Counted from first tries, role-play turns and your real-life log. These are what to watch for in your next real conversation.</p>${eye}</div>`;
+}
+
+function runRoleplay(id) {
+  const rp = C.roleplays.find(r => r.id === id);
+  let nodeId = rp.start;
+  const turns = [];
+  app.innerHTML = `<button class="btn ghost" id="back">← Role-plays</button>
+    <div class="card"><h1>${esc(rp.title)}</h1>${pressureTag(rp.pressure)}<p class="small"><b>Who:</b> ${esc(rp.persona)}</p><p class="small muted">${esc(rp.setting)}</p></div>
+    <div id="chat" class="chat" aria-live="polite"></div><div id="composer"></div>`;
+  $("#back").onclick = () => show("talk");
+  const chat = $("#chat");
+  const bubble = (who, html, cls = "") => chat.insertAdjacentHTML("beforeend", `<div class="bubble ${who} ${cls}">${html}</div>`);
+  const ask = () => {
+    const n = rp.nodes[nodeId];
+    if (n.situation) bubble("note", esc(n.situation));
+    bubble("them", `${esc(n.says)} ${speakBtn(n.says)}`);
+    $("#composer").innerHTML = `<div class="card composer"><label for="ans">Your reply</label><textarea id="ans" placeholder="Say it the way you would in real life..."></textarea><button class="btn" id="send">Send</button></div>`;
+    $("#ans").focus({ preventScroll: true });
+    $("#send").onclick = async () => {
+      const text = $("#ans").value.trim(); if (!text) return;
+      const s = rpStep(rp, nodeId, text);
+      turns.push({ node: nodeId, text, score: s.result.score, issues: s.result.issues.map(i => i.id), missing: s.result.missing.map(m => m.id).filter(Boolean), result: s.result });
+      bubble("me", `${esc(text)}<details class="turn-fb"><summary>${s.result.score}/100 · ${s.result.passed ? "strong" : "weak"} reply</summary>${feedbackHTML(text, s.result)}</details>`, s.result.passed ? "pass" : "fail");
+      if (s.branch.react) bubble("them", esc(s.branch.react));
+      nodeId = s.next;
+      const nx = rp.nodes[nodeId];
+      if (nx.ending) {
+        P.recordRoleplay(S, rp, nx.ending.outcome, turns); await save();
+        const icon = { good: "✓ Good ending", mixed: "◐ Mixed ending", bad: "✗ Bad ending" }[nx.ending.outcome];
+        $("#composer").innerHTML = `<div class="card ending ${nx.ending.outcome}"><h2>${icon}</h2><p>${esc(nx.ending.text)}</p>
+          <h3>What changed the conversation</h3><ol class="small">${turns.map(t => `<li>${t.score}/100: “${esc(t.text)}”${t.result.issues.length ? ` <span class="bad-txt">${t.result.issues.slice(0, 2).map(i => esc(i.message.split(".")[0])).join("; ")}</span>` : ""}</li>`).join("")}</ol>
+          <details><summary>See strong replies for the turns you played</summary>${turns.map(t => `<div class="quote">${esc(rp.nodes[t.node].tests.good)}</div>`).join("")}</details>
+          <button class="btn" id="again">Play again</button></div>`;
+        $("#again").onclick = () => runRoleplay(id);
+      } else ask();
+    };
+  };
+  ask();
+}
+
+function runDiagnose() {
+  POOL ||= buildPool(C);
+  const seen = S.diagnoseSeen ||= {};
+  const it = nextItem(POOL, seen, S.diagnose.rounds);
+  app.innerHTML = `<h1>Diagnose</h1>
+    <p class="muted">Someone else replied. What are they doing wrong? Training your eye on other people's replies is the fastest way to catch yourself.</p>
+    <div class="card"><p class="small muted">${esc(it.context)}</p>${it.line ? `<div class="quote">“${esc(it.line)}”</div>` : ""}
+      <p class="small"><b>Their reply:</b></p><div class="quote reply">${esc(it.reply)}</div>
+      <fieldset class="habit-pick"><legend>Pick every mistake you see</legend>
+      ${HABITS.map(h => `<label class="pick"><input type="checkbox" value="${h.id}"><span><b>${esc(h.name)}</b><br><span class="small muted">${esc(h.hint)}</span></span></label>`).join("")}
+      </fieldset><button class="btn" id="dx">Check my diagnosis</button></div><div id="dres" aria-live="polite"></div>`;
+  $("#dx").onclick = async () => {
+    const picked = new Set($$(".habit-pick input:checked").map(i => i.value));
+    if (!picked.size) return alert("Pick at least one mistake, or think again: is the reply really fine?");
+    const r = P.recordDiagnose(S, it.key, picked);
+    seen[it.id] = (seen[it.id] || 0) + 1;
+    await save();
+    $$(".habit-pick input").forEach(i => i.disabled = true);
+    $("#dx").remove();
+    const name = id => HABITS.find(h => h.id === id).name;
+    const evidence = id => it.result.issues.filter(i => habitsOf([i.id]).has(id) || i.habit === id).map(i => `“${esc(i.hit)}”: ${esc(i.message)}${principleDetails(i.principle)}`)
+      .concat(it.result.missing.filter(m => HABITS.find(h => h.id === id).missing?.includes(m.id)).map(m => `Missing: ${esc(m.label)}${principleDetails(m.principle)}`)).join("<br>");
+    $("#dres").innerHTML = `<div class="card"><h3>You spotted ${r.spotted.length} of ${it.key.size}</h3><ul class="fb">
+      ${r.spotted.map(h => `<li class="ok">✓ <b>${esc(name(h))}</b><br><span class="small">${evidence(h)}</span></li>`).join("")}
+      ${r.missed.map(h => `<li class="miss">✗ Missed: <b>${esc(name(h))}</b><br><span class="small">${evidence(h)}</span></li>`).join("")}
+      ${r.extra.map(h => `<li class="bad">? You picked <b>${esc(name(h))}</b>, but the checker didn't detect it. Look again. If you can point to the exact words, you may be right: the checker only sees words, not intent.</li>`).join("")}
+      </ul><div class="quote">${highlight(it.reply, it.result)}</div>
+      <h3>Now fix it</h3><label for="fix">How should they have said it?</label><textarea id="fix"></textarea>
+      <div class="row"><button class="btn" id="fixc">Check my fix</button><button class="btn ghost" id="nextd">Next reply →</button></div><div id="fixres"></div></div>`;
+    $("#fixc").onclick = () => { const t = $("#fix").value; if (t.trim()) $("#fixres").innerHTML = feedbackHTML(t, analyze(t, it.spec)); };
+    $("#nextd").onclick = () => { window.scrollTo(0, 0); runDiagnose(); };
   };
 }
 
