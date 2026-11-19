@@ -83,3 +83,13 @@ test("old or broken saved state is repaired", () => {
   assert.deepEqual(P.migrate(null), P.emptyState());
   assert.ok(Array.isArray(P.migrate({ attempts: [{}] }).reallife));
 });
+test("backup round-trip, and bad files are rejected with a readable message", () => {
+  const S = P.emptyState();
+  const s = content.scenarios[0];
+  P.recordScenario(S, s, pass(s), 1, s.models[0], { now: T0 });
+  const file = JSON.stringify({ app: "leader-talk", version: "1.4.0", state: S });
+  assert.deepEqual(P.parseBackup(file), P.migrate(S));
+  assert.throws(() => P.parseBackup("not json"), /not JSON/);
+  assert.throws(() => P.parseBackup('{"hello": 1}'), /isn't a Leader Talk backup/);
+  assert.equal(P.parseBackup(JSON.stringify({ version: 1, attempts: [], scenarios: {} })).version, P.STATE_VERSION);
+});

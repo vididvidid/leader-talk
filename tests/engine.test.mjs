@@ -74,3 +74,8 @@ test("an apology is allowed when the mistake is real, but only once", () => {
   assert.ok(!ids("I'm sorry, I sent the wrong file.", { allow: ["sorry"] }).includes("sorry"));
   assert.ok(ids("I'm sorry, so sorry, I sent the wrong file.", { allow: ["sorry"] }).includes("sorry_repeat"));
 });
+test("long sentences (over 25 words) are flagged; 25 or fewer are not", () => {
+  const w = n => Array.from({ length: n }, (_, i) => "word" + i).join(" ") + ".";
+  assert.ok(ids(w(26)).includes("long_sentence"));
+  assert.ok(!ids(w(25)).includes("long_sentence"));
+});

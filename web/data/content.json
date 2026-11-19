@@ -494,7 +494,8 @@
      "Plan B is definitely a bad idea, it takes the lot of time."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "meeting"
   },
   {
    "id": "s_idk_sso",
@@ -540,7 +541,8 @@
      "Yes, we support Okta, no problem."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "client"
   },
   {
    "id": "s_idk_dict",
@@ -589,7 +591,8 @@
      "I don't know."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "interview"
   },
   {
    "id": "s_cl_mid",
@@ -641,7 +644,8 @@
      "Okay yeah sure, makes sense."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "meeting"
   },
   {
    "id": "s_cl_vague",
@@ -686,7 +690,8 @@
      "Sure."
     ]
    },
-   "pressure": 1
+   "pressure": 1,
+   "setting": "1:1"
   },
   {
    "id": "s_cl_numbers",
@@ -730,7 +735,8 @@
      "Okay, noted, thank you."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "client"
   },
   {
    "id": "s_dis_launch",
@@ -779,7 +785,8 @@
      "Okay sir, Monday is fine."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "meeting"
   },
   {
    "id": "s_dis_pw",
@@ -839,7 +846,8 @@
      "Okay, we can encrypt later."
     ]
    },
-   "pressure": 1
+   "pressure": 1,
+   "setting": "meeting"
   },
   {
    "id": "s_dis_qa",
@@ -894,7 +902,8 @@
      "That's a terrible decision, it's a mistake."
     ]
    },
-   "pressure": 3
+   "pressure": 3,
+   "setting": "meeting"
   },
   {
    "id": "s_hold_minor",
@@ -956,7 +965,8 @@
      "Okay sorry, fine."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "1:1"
   },
   {
    "id": "s_hold_interrupt",
@@ -1021,7 +1031,8 @@
      "Stop interrupting me, it's rude."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "meeting"
   },
   {
    "id": "s_hold_discount",
@@ -1075,7 +1086,8 @@
      "Okay, we will match it."
     ]
    },
-   "pressure": 3
+   "pressure": 3,
+   "setting": "client"
   },
   {
    "id": "s_th_slow",
@@ -1120,7 +1132,8 @@
      "Use caching, definitely."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "meeting"
   },
   {
    "id": "s_th_signups",
@@ -1166,7 +1179,8 @@
      "I don't know, maybe something."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "standup"
   },
   {
    "id": "s_th_pumps",
@@ -1221,7 +1235,8 @@
      "Maybe 500? I'm not sure."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "interview"
   },
   {
    "id": "s_co_req",
@@ -1264,7 +1279,8 @@
      "Sorry sir, I tried my best, I may not be wrong."
     ]
    },
-   "pressure": 3
+   "pressure": 3,
+   "setting": "meeting"
   },
   {
    "id": "s_co_report",
@@ -1313,7 +1329,8 @@
      "Calm down, our numbers are correct."
     ]
    },
-   "pressure": 3
+   "pressure": 3,
+   "setting": "client"
   },
   {
    "id": "s_co_wrongfile",
@@ -1369,7 +1386,8 @@
      "Sorry, but it was because I was busy and the files had the same name."
     ]
    },
-   "pressure": 3
+   "pressure": 3,
+   "setting": "1:1"
   },
   {
    "id": "s_to_review",
@@ -1414,7 +1432,8 @@
     ]
    },
    "written": true,
-   "pressure": 1
+   "pressure": 1,
+   "setting": "email"
   },
   {
    "id": "s_to_followup",
@@ -1466,7 +1485,8 @@
     ]
    },
    "written": true,
-   "pressure": 1
+   "pressure": 1,
+   "setting": "email"
   },
   {
    "id": "s_to_decline",
@@ -1530,7 +1550,3538 @@
      "No."
     ]
    },
-   "pressure": 2
+   "pressure": 2,
+   "setting": "1:1"
+  },
+  {
+   "id": "m_idk_budget",
+   "skill": "idk",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "Budget question in a 1:1",
+   "context": "Your manager asks in your weekly 1:1:",
+   "line": "How much of the Q3 cloud budget have we used so far?",
+   "situation": "You know usage went up after the migration, but you don't know the exact figure.",
+   "moves": [
+    "admit_gap",
+    "share_known",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "budget",
+    "cloud",
+    "cost",
+    "q3",
+    "usage",
+    "spend",
+    "migration",
+    "figure",
+    "number",
+    "bill"
+   ],
+   "question": "After your reply, what will your manager have, and when?",
+   "models": [
+    "I don't have the exact figure with me. What I do know is usage went up after the migration. I'll pull the billing report and send it to you by tomorrow morning.",
+    "Not off the top of my head. I know spend rose after the migration; let me check the cloud dashboard and share the number today."
+   ],
+   "tests": {
+    "pass": [
+     "I'm not sure of the exact spend, but I know it rose after the migration. I'll check the billing page and send it by 5 pm."
+    ],
+    "fail": [
+     "Sorry, no idea about the budget."
+    ]
+   }
+  },
+  {
+   "id": "m_idk_client_date",
+   "skill": "idk",
+   "setting": "client",
+   "pressure": 2,
+   "title": "Client asks for a date",
+   "context": "On a call, the client asks:",
+   "line": "When exactly will the mobile app be ready?",
+   "situation": "The team hasn't estimated it yet. You know design is finished.",
+   "moves": [
+    "admit_gap",
+    "share_known",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "app",
+    "mobile",
+    "date",
+    "ready",
+    "estimate",
+    "design",
+    "team",
+    "release",
+    "timeline"
+   ],
+   "question": "If you guess a date now and miss it, what does the client remember?",
+   "models": [
+    "I don't want to guess a date. What I can tell you is design is finished. I'll get an estimate from the team and send you a date by Thursday.",
+    "I'm not certain yet, because the team hasn't estimated the build. Design is done. Let me confirm with them and email you a date tomorrow."
+   ],
+   "tests": {
+    "pass": [
+     "We haven't estimated it yet, so I don't have a date. I know design is complete. I'll share a realistic date by Friday."
+    ],
+    "fail": [
+     "Definitely in two weeks, guaranteed."
+    ]
+   },
+   "forbid": [
+    {
+     "pattern": "\\b(definitely|guaranteed|100 ?%)\\b.*\\b(week|day|month)",
+     "message": "Promising a date nobody has estimated.",
+     "fix": "Give the date after you've checked.",
+     "habit": "bluff"
+    }
+   ]
+  },
+  {
+   "id": "m_idk_interview_tool",
+   "skill": "idk",
+   "setting": "interview",
+   "pressure": 2,
+   "title": "Interview: a tool you haven't used",
+   "context": "The interviewer asks:",
+   "line": "Have you worked with Kubernetes in production?",
+   "situation": "You haven't. You've used Docker a lot and done a Kubernetes tutorial.",
+   "moves": [
+    "admit_gap",
+    "share_known"
+   ],
+   "topic": [
+    "kubernetes",
+    "docker",
+    "container",
+    "production",
+    "tutorial",
+    "cluster",
+    "deploy",
+    "k8s"
+   ],
+   "question": "How can an honest 'no' still show you'd learn it quickly?",
+   "models": [
+    "Not in production. I've used Docker daily for two years and I've done a Kubernetes course, so I know the core ideas: pods, deployments, services.",
+    "I haven't run Kubernetes in production. What I do know well is Docker, and I've deployed a small app to a local cluster to learn it."
+   ],
+   "tests": {
+    "pass": [
+     "I haven't used Kubernetes in production, but I have used Docker for two years and I'm learning Kubernetes now."
+    ],
+    "fail": [
+     "Yes, I know Kubernetes."
+    ]
+   },
+   "forbid": [
+    {
+     "pattern": "^\\s*yes\\b",
+     "message": "Claiming experience you don't have. The next question will expose it.",
+     "fix": "Say what you have done.",
+     "habit": "bluff"
+    }
+   ]
+  },
+  {
+   "id": "m_idk_standup_status",
+   "skill": "idk",
+   "setting": "standup",
+   "pressure": 1,
+   "title": "Stand-up: blocked on something unclear",
+   "context": "In stand-up, your lead asks:",
+   "line": "Is the payment API ready for you to integrate?",
+   "situation": "You don't know. The other team hasn't replied to your message from yesterday.",
+   "moves": [
+    "admit_gap",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "payment",
+    "api",
+    "integrat",
+    "team",
+    "reply",
+    "ready",
+    "message",
+    "blocked"
+   ],
+   "question": "What will you do next, and by when?",
+   "models": [
+    "I don't know yet. The payments team hasn't replied to my message from yesterday. I'll call their lead after stand-up and update you by noon.",
+    "Not sure. I'm waiting on the payments team; I'll follow up with them right after this and post an update by 12."
+   ],
+   "tests": {
+    "pass": [
+     "I don't have confirmation yet. I'll ping the payments team after stand-up and update the channel by lunch."
+    ],
+    "fail": [
+     "Maybe, I guess, probably soon."
+    ]
+   }
+  },
+  {
+   "id": "m_idk_numbers_meeting",
+   "skill": "idk",
+   "setting": "meeting",
+   "pressure": 3,
+   "title": "Put on the spot with numbers",
+   "context": "In a review with directors, someone asks:",
+   "line": "What's our customer churn this quarter?",
+   "situation": "You don't know the exact number. Everyone is looking at you.",
+   "moves": [
+    "admit_gap",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "churn",
+    "customer",
+    "quarter",
+    "number",
+    "rate",
+    "figure",
+    "data",
+    "dashboard"
+   ],
+   "question": "Is it worse to say 'I'll check' or to guess wrong in front of directors?",
+   "models": [
+    "I don't have the exact churn figure with me. I'll pull it from the dashboard and share it with everyone right after this meeting.",
+    "I don't want to give you a wrong number. Let me check the churn data and email it to the group within the hour."
+   ],
+   "tests": {
+    "pass": [
+     "I don't have the exact churn rate right now. I'll check the dashboard and share it before the end of the day."
+    ],
+    "fail": [
+     "Around 5%, I think, maybe 7."
+    ]
+   }
+  },
+  {
+   "id": "m_idk_policy",
+   "skill": "idk",
+   "setting": "1:1",
+   "pressure": 1,
+   "title": "Question about HR policy",
+   "context": "A new teammate asks you:",
+   "line": "How many days of work from home do we get?",
+   "situation": "You think it's two, but the policy changed recently.",
+   "moves": [
+    "admit_gap",
+    "share_known",
+    "ownership"
+   ],
+   "topic": [
+    "home",
+    "wfh",
+    "remote",
+    "days",
+    "policy",
+    "hr",
+    "office",
+    "week"
+   ],
+   "question": "What's the risk if they plan their month on your guess?",
+   "models": [
+    "I'm not sure since the policy changed. It used to be two days a week. Let me check the HR page and send you the link.",
+    "I think it was two, but I don't want to guess because it changed recently. I'll find the latest policy and share it today."
+   ],
+   "tests": {
+    "pass": [
+     "It used to be two days, but I'm not certain after the change. I'll check with HR and let you know today."
+    ],
+    "fail": [
+     "Two days, definitely."
+    ]
+   }
+  },
+  {
+   "id": "m_idk_hard_followup",
+   "skill": "idk",
+   "setting": "interview",
+   "pressure": 3,
+   "title": "Interviewer pushes after 'I don't know'",
+   "context": "You said you weren't sure. The interviewer presses:",
+   "line": "Just give me your best guess. What would you do?",
+   "situation": "The question was how to handle a sudden 10x traffic spike. You've never faced one.",
+   "moves": [
+    "structure",
+    {
+     "label": "Label guesses as guesses",
+     "patterns": [
+      "\\b(could be|might be|may be|one possibility|my guess|hypothes|hunch|possibly|it's possible|suspect)\\b"
+     ],
+     "tip": "\"One possibility is...\""
+    },
+    "reason"
+   ],
+   "topic": [
+    "traffic",
+    "spike",
+    "scale",
+    "server",
+    "cache",
+    "load",
+    "queue",
+    "capacity",
+    "instance",
+    "10x"
+   ],
+   "question": "How can you guess out loud without pretending to be sure?",
+   "models": [
+    "My best guess: first, I'd scale out the servers because that's fastest. Second, I'd add caching for the busiest pages, since repeated reads are usually the bottleneck. I'd watch the database closely, because it could be the real limit.",
+    "Let me reason it out. One possibility is the app servers fail first, so I'd scale them out. Then I'd cache hot pages, because that reduces database load."
+   ],
+   "tests": {
+    "pass": [
+     "I haven't faced it, but my guess is: first scale out the servers, then add a cache, because the database is likely the bottleneck."
+    ],
+    "fail": [
+     "I don't know, sorry."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_cl_jargon",
+   "skill": "clarify",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "An acronym you don't know",
+   "context": "In a planning meeting, someone says:",
+   "line": "We'll need to check the RTO before we commit to the SLA.",
+   "situation": "You don't know what RTO means in this context.",
+   "moves": [
+    "specific_question"
+   ],
+   "topic": [
+    "rto",
+    "sla",
+    "recovery",
+    "mean",
+    "stand",
+    "acronym",
+    "objective"
+   ],
+   "question": "Is asking one short question in a meeting really costly? What does guessing cost?",
+   "models": [
+    "Quick question: what does RTO mean here? Is it the recovery time objective?",
+    "Sorry to pause on that: when you say RTO, do you mean how fast we must recover after an outage?"
+   ],
+   "tests": {
+    "pass": [
+     "Could you expand RTO for me? I want to make sure I follow the SLA discussion."
+    ],
+    "fail": [
+     "(Say nothing and nod.) Okay, sure."
+    ]
+   },
+   "allow": [
+    "sorry"
+   ]
+  },
+  {
+   "id": "m_cl_feedback",
+   "skill": "clarify",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "Vague feedback",
+   "context": "Your manager says in your 1:1:",
+   "line": "Your presentations need to be more executive-level.",
+   "situation": "You don't know what that means in practice.",
+   "moves": [
+    "specific_question"
+   ],
+   "topic": [
+    "presentation",
+    "executive",
+    "slide",
+    "level",
+    "detail",
+    "short",
+    "summary",
+    "decision",
+    "mean"
+   ],
+   "question": "What would 'executive-level' look like on an actual slide? How could you find out?",
+   "models": [
+    "Thanks. When you say executive-level, do you mean fewer details, or starting with the recommendation?",
+    "That's useful. Could you point to one slide from last week that wasn't executive-level, so I can see what to change?"
+   ],
+   "tests": {
+    "pass": [
+     "Could you give me an example? Is it about shorter slides or a clearer recommendation at the start?"
+    ],
+    "fail": [
+     "Okay, I'll try to improve."
+    ]
+   }
+  },
+  {
+   "id": "m_cl_client_req",
+   "skill": "clarify",
+   "setting": "client",
+   "pressure": 2,
+   "title": "Client's fuzzy requirement",
+   "context": "The client says:",
+   "line": "We want the dashboard to be real-time.",
+   "situation": "Real-time could mean every second or every hour. The cost is very different.",
+   "moves": [
+    "summarize_back",
+    "specific_question"
+   ],
+   "topic": [
+    "real",
+    "dashboard",
+    "refresh",
+    "second",
+    "minute",
+    "hour",
+    "update",
+    "data",
+    "live",
+    "delay",
+    "fresh"
+   ],
+   "question": "How can you turn 'real-time' into a number?",
+   "models": [
+    "Just to make sure I understand: you want the dashboard to update automatically. How fresh does the data need to be: every few seconds, or every few minutes?",
+    "If I understand correctly, you want live numbers. What's the longest delay that would still be acceptable for your team?"
+   ],
+   "tests": {
+    "pass": [
+     "So the dashboard should refresh on its own. Do you need updates every second, or would every five minutes work?"
+    ],
+    "fail": [
+     "Sure, real-time, no problem."
+    ]
+   }
+  },
+  {
+   "id": "m_cl_task_scope",
+   "skill": "clarify",
+   "setting": "standup",
+   "pressure": 1,
+   "title": "A new task with no details",
+   "context": "Your lead posts in chat:",
+   "line": "Can you take care of the onboarding emails?",
+   "situation": "You don't know if that means writing them, fixing a bug, or setting up the tool.",
+   "moves": [
+    "specific_question"
+   ],
+   "topic": [
+    "onboarding",
+    "email",
+    "write",
+    "bug",
+    "tool",
+    "template",
+    "send",
+    "set"
+   ],
+   "question": "How many different tasks could 'take care of' hide?",
+   "models": [
+    "Sure. Do you mean writing new email content, or fixing the sending issue from last week?",
+    "Happy to. What's the goal: new templates, or getting the current emails to send on time?"
+   ],
+   "tests": {
+    "pass": [
+     "Yes. Is this about the email content or the sending tool?"
+    ],
+    "fail": [
+     "Ok will do"
+    ]
+   }
+  },
+  {
+   "id": "m_cl_accent",
+   "skill": "clarify",
+   "setting": "client",
+   "pressure": 2,
+   "title": "Hard to understand on a call",
+   "context": "A client with a strong accent and a weak connection says something important. You catch:",
+   "line": "...so the deadline moves to the ...th and we need the ... report.",
+   "situation": "You missed the date and which report.",
+   "moves": [
+    "specific_question",
+    {
+     "label": "Say what you did catch",
+     "patterns": [
+      "\\bdeadline\\b",
+      "\\bmov(e|es|ed)\\b",
+      "\\breport\\b"
+     ],
+     "tip": "Repeat the part you heard."
+    }
+   ],
+   "topic": [
+    "deadline",
+    "date",
+    "report",
+    "move",
+    "repeat",
+    "line"
+   ],
+   "question": "How can you ask again without making them feel their English is the problem?",
+   "models": [
+    "The line broke up a bit. I got that the deadline is moving. Could you repeat the new date and which report you need?",
+    "Sorry, the connection dropped for a second. The deadline moves to which date, and which report is it?"
+   ],
+   "tests": {
+    "pass": [
+     "I caught that the deadline is moving, but the line was bad. Which date, and which report?"
+    ],
+    "fail": [
+     "Pardon? Pardon?"
+    ]
+   },
+   "allow": [
+    "sorry"
+   ]
+  },
+  {
+   "id": "m_cl_disagree_meaning",
+   "skill": "clarify",
+   "setting": "meeting",
+   "pressure": 3,
+   "title": "Check before you disagree",
+   "context": "A senior says firmly:",
+   "line": "We're moving everything to the new platform next month.",
+   "situation": "You think this is risky, but you're not sure whether 'everything' includes the billing system.",
+   "moves": [
+    "specific_question"
+   ],
+   "topic": [
+    "platform",
+    "billing",
+    "everything",
+    "move",
+    "migrat",
+    "month",
+    "include",
+    "system"
+   ],
+   "question": "Should you disagree first, or check what 'everything' means first?",
+   "models": [
+    "Before I share a concern: does everything include the billing system, or only the internal tools?",
+    "Just to clarify: when you say everything, is billing part of next month's move?"
+   ],
+   "tests": {
+    "pass": [
+     "Could I check one thing first: does the move include billing?"
+    ],
+    "fail": [
+     "That's a bad idea."
+    ]
+   },
+   "hard": true,
+   "forbid": [
+    {
+     "pattern": "\\b(bad idea|won't work|that's wrong)\\b",
+     "message": "You're disagreeing before you know what's meant.",
+     "fix": "Clarify first, then disagree if needed.",
+     "habit": "dismissive"
+    }
+   ]
+  },
+  {
+   "id": "m_dis_estimate",
+   "skill": "disagree",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "Unrealistic estimate",
+   "context": "In sprint planning, your lead says:",
+   "line": "The search feature is small. Let's give it two days.",
+   "situation": "You looked at the code: it touches three services and needs new indexes. You think it's closer to a week.",
+   "moves": [
+    "view",
+    "reason",
+    "suggestion"
+   ],
+   "topic": [
+    "search",
+    "feature",
+    "day",
+    "week",
+    "estimate",
+    "service",
+    "index",
+    "code"
+   ],
+   "question": "What did you see that your lead might not have seen?",
+   "models": [
+    "I looked at the code, and search touches three services and needs new indexes. I think it's closer to a week. Could we split it, so the basic version ships in two days?",
+    "My concern is the estimate: because it needs changes in three services, I'd plan for about five days. I'd suggest we add a day to check the indexes first."
+   ],
+   "tests": {
+    "pass": [
+     "I think two days is tight because it touches three services. I'd suggest we plan a week, or ship a smaller version first."
+    ],
+    "fail": [
+     "Two days is impossible, that's a crazy estimate."
+    ]
+   },
+   "forbid": [
+    {
+     "pattern": "\\b(impossible|crazy|ridiculous)\\b",
+     "message": "Labelling the estimate makes your lead defend it.",
+     "fix": "Show what you found in the code.",
+     "habit": "dismissive"
+    }
+   ]
+  },
+  {
+   "id": "m_dis_client_scope",
+   "skill": "disagree",
+   "setting": "client",
+   "pressure": 3,
+   "title": "Client wants it all by Friday",
+   "context": "The client insists:",
+   "line": "We need all five features by Friday. That's non-negotiable.",
+   "situation": "Your team can deliver two of them well by Friday, all five by the end of the month.",
+   "moves": [
+    "acknowledge",
+    "view",
+    "options"
+   ],
+   "topic": [
+    "feature",
+    "friday",
+    "five",
+    "two",
+    "month",
+    "deliver",
+    "quality",
+    "priority",
+    "deadline"
+   ],
+   "question": "How can you say no to 'all five' while still giving the client a win on Friday?",
+   "models": [
+    "I understand Friday is important. I don't think all five can be done well by then. We could either deliver the two that matter most by Friday, or all five by the end of the month. Which works better for you?",
+    "I hear you. My concern is that rushing all five will mean bugs. Could we either ship the two most important by Friday, or all five properly by the 30th?"
+   ],
+   "tests": {
+    "pass": [
+     "I understand the deadline. I don't think five by Friday is safe. Could we do the top two by Friday and the rest by month end?"
+    ],
+    "fail": [
+     "Okay, we will try to do all five."
+    ]
+   }
+  },
+  {
+   "id": "m_dis_peer_design",
+   "skill": "disagree",
+   "setting": "meeting",
+   "pressure": 1,
+   "title": "A teammate's design",
+   "context": "A teammate proposes:",
+   "line": "Let's put all the settings in one big JSON file.",
+   "situation": "You think it will cause merge conflicts as the team grows.",
+   "moves": [
+    "view",
+    "reason",
+    "suggestion"
+   ],
+   "topic": [
+    "json",
+    "file",
+    "settings",
+    "config",
+    "merge",
+    "conflict",
+    "team",
+    "split"
+   ],
+   "question": "How can you raise the risk while keeping their idea partly alive?",
+   "models": [
+    "I see it a bit differently: with one big file, we'll get merge conflicts as the team grows. What if we keep JSON but split it by feature?",
+    "My concern is merge conflicts, because six people will edit the same file. Could we use one file per module instead?"
+   ],
+   "tests": {
+    "pass": [
+     "I think one file will cause merge conflicts since everyone edits it. Could we split it by feature?"
+    ],
+    "fail": [
+     "No, that's a terrible idea."
+    ]
+   }
+  },
+  {
+   "id": "m_dis_process",
+   "skill": "disagree",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "A process that wastes time",
+   "context": "Your manager says:",
+   "line": "From now on, everyone writes a daily status email.",
+   "situation": "The team already updates the board every day. You think the email duplicates it.",
+   "moves": [
+    "view",
+    "reason",
+    "suggestion"
+   ],
+   "topic": [
+    "email",
+    "status",
+    "daily",
+    "board",
+    "update",
+    "team",
+    "duplicate"
+   ],
+   "question": "What is your manager actually trying to get? Can you give them that more cheaply?",
+   "models": [
+    "I understand you want better visibility. My concern is that we already update the board daily, so the email would duplicate it. Could we add a short summary to the board instead?",
+    "I'd push back gently: since the board already has daily updates, a second email costs everyone time. What if I send you a weekly summary from the board?"
+   ],
+   "tests": {
+    "pass": [
+     "I think the email would duplicate the board because we update it daily. Could we improve the board instead?"
+    ],
+    "fail": [
+     "This is useless, nobody will read it."
+    ]
+   }
+  },
+  {
+   "id": "m_dis_senior_public",
+   "skill": "disagree",
+   "setting": "meeting",
+   "pressure": 3,
+   "title": "Correcting a senior's fact in public",
+   "context": "A senior manager tells the room:",
+   "line": "The outage last week was caused by the database.",
+   "situation": "You were on call. The logs show it was an expired certificate, not the database.",
+   "moves": [
+    "view",
+    {
+     "label": "Evidence",
+     "patterns": [
+      "\\d",
+      "\\b(tested|checked|data|numbers?|logs?|feedback|results?|measured|saw|noticed|emails?|according to|records?|timeline|couldn't|struggled)\\b"
+     ],
+     "tip": "Back it up with something concrete."
+    },
+    "suggestion"
+   ],
+   "topic": [
+    "outage",
+    "certificate",
+    "database",
+    "log",
+    "cause",
+    "expired",
+    "week",
+    "incident"
+   ],
+   "question": "How do you correct a senior in front of others without making them look foolish?",
+   "models": [
+    "One detail from the on-call side: the logs show the outage was caused by an expired certificate, not the database. I think that matters for the fix. Could I share the log timeline after this?",
+    "I was on call, and from what I saw in the logs, it was an expired certificate. I'd suggest we add certificate expiry alerts. I can send the details."
+   ],
+   "tests": {
+    "pass": [
+     "I was on call. The logs point to an expired certificate rather than the database. I'd suggest we review the timeline together."
+    ],
+    "fail": [
+     "No, you're wrong, it was the certificate."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_dis_feature_kill",
+   "skill": "disagree",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "Removing a feature users love",
+   "context": "The product owner says:",
+   "line": "Nobody uses the export button. Let's remove it.",
+   "situation": "You checked: 300 users clicked it last month, mostly paying customers.",
+   "moves": [
+    {
+     "label": "Evidence",
+     "patterns": [
+      "\\d",
+      "\\b(tested|checked|data|numbers?|logs?|feedback|results?|measured|saw|noticed|emails?|according to|records?|timeline|couldn't|struggled)\\b"
+     ],
+     "tip": "Back it up with something concrete."
+    },
+    "view",
+    "suggestion"
+   ],
+   "topic": [
+    "export",
+    "button",
+    "user",
+    "customer",
+    "remove",
+    "click",
+    "month",
+    "paying"
+   ],
+   "question": "What data could change their mind?",
+   "models": [
+    "I checked the analytics: 300 users used export last month, mostly paying customers. I don't think we should remove it yet. Could we ask a few of them first?",
+    "One data point: 300 people clicked export last month, many on paid plans. My concern is losing them. What if we hide it in a menu instead of removing it?"
+   ],
+   "tests": {
+    "pass": [
+     "Export was used by 300 users last month. I'd suggest we keep it, or move it to a menu."
+    ],
+    "fail": [
+     "Users obviously need it, everyone knows that."
+    ]
+   }
+  },
+  {
+   "id": "m_hold_credit",
+   "skill": "hold",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "Someone takes credit",
+   "context": "In a meeting, a colleague says:",
+   "line": "As I built in the new report, the load time is down 40%.",
+   "situation": "You built that improvement. He only reviewed it.",
+   "moves": [
+    {
+     "label": "Claim your work factually",
+     "patterns": [
+      "\\b(i|i've|i have) (built|worked on|wrote|did|made|optimi[sz]ed|implemented)\\b",
+      "\\bmy (work|change|pr|fix)\\b"
+     ],
+     "tip": "State calmly what you did."
+    },
+    {
+     "label": "Keep it positive",
+     "patterns": [
+      "\\b(thanks|glad|happy|good|great|team|together|review)\\b"
+     ],
+     "tip": "No accusation; stay friendly."
+    }
+   ],
+   "topic": [
+    "report",
+    "load",
+    "built",
+    "work",
+    "optimi",
+    "change",
+    "query"
+   ],
+   "question": "How can you correct the record without sounding petty?",
+   "models": [
+    "Glad it's working well. I worked on that change: the 40% came mainly from rewriting the queries. Happy to walk anyone through it, and thanks to Rohan for the review.",
+    "Just to add: I built that optimisation, and Rohan reviewed it. I can share what changed in the queries if that's useful to the team."
+   ],
+   "tests": {
+    "pass": [
+     "Happy to share details: I built that change, and the speed-up came from caching. Thanks for the review, Rohan."
+    ],
+    "fail": [
+     "He's lying, I did that."
+    ]
+   }
+  },
+  {
+   "id": "m_hold_scope_creep",
+   "skill": "hold",
+   "setting": "client",
+   "pressure": 2,
+   "title": "Free extra work",
+   "context": "The client says, casually:",
+   "line": "Since you're already doing the website, just add a blog too. Should be quick.",
+   "situation": "The blog is not in the contract and would take a week.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Name the scope",
+     "patterns": [
+      "\\b(contract|scope|agreed|estimate|quote|week|days|separate|extra|change request)\\b"
+     ],
+     "tip": "Say it's outside what was agreed."
+    },
+    "options"
+   ],
+   "topic": [
+    "blog",
+    "website",
+    "contract",
+    "scope",
+    "week",
+    "quote",
+    "estimate",
+    "extra"
+   ],
+   "question": "How can you protect the contract without sounding unhelpful?",
+   "models": [
+    "Happy to help with the blog. It's not in the current scope, and it's about a week of work. I can send you a quick quote, or we can add it after launch.",
+    "Good idea. Since the blog is outside the agreed scope, I'd suggest we either add it as a small change request, or plan it for phase two."
+   ],
+   "tests": {
+    "pass": [
+     "I'd like to help. The blog is outside the contract and takes about a week, so could we do it as a separate quote, or after launch?"
+    ],
+    "fail": [
+     "Okay sure, we'll add it."
+    ]
+   },
+   "forbid": [
+    {
+     "pattern": "^\\s*(ok|okay|sure|yes)[,.! ]*(we|i)('ll| will) (add|do)\\b",
+     "message": "You agreed to unpaid work in one sentence.",
+     "fix": "Acknowledge, name the scope, offer options.",
+     "habit": "fake_yes"
+    }
+   ]
+  },
+  {
+   "id": "m_hold_bad_review",
+   "skill": "hold",
+   "setting": "appraisal",
+   "pressure": 3,
+   "title": "Unfair rating",
+   "context": "In your appraisal, your manager says:",
+   "line": "I'm rating you 'meets expectations'. You didn't take much initiative this year.",
+   "situation": "You led the migration project and automated the release process. You think it deserves more.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Concrete achievement",
+     "patterns": [
+      "\\d",
+      "\\b(delivered|shipped|led|built|reduced|improved|saved|launched|fixed|automated)\\b"
+     ],
+     "tip": "Name a result with a number."
+    },
+    "specific_question"
+   ],
+   "topic": [
+    "rating",
+    "initiative",
+    "migration",
+    "release",
+    "automat",
+    "led",
+    "year",
+    "project",
+    "expect"
+   ],
+   "question": "What facts can you bring that change the conversation from feelings to evidence?",
+   "models": [
+    "I understand. I'd like to share two things: I led the migration project, and I automated releases, which saved about 5 hours a week. What would 'exceeds' have needed from me?",
+    "Thanks for the feedback. I see it a bit differently: I led the migration and built the release automation without being asked. Could we look at those against the rating criteria?"
+   ],
+   "tests": {
+    "pass": [
+     "I hear you. I led the migration and automated our releases, which cut release time in half. Which of those didn't count as initiative?"
+    ],
+    "fail": [
+     "That's not fair, I worked very very hard all year."
+    ]
+   }
+  },
+  {
+   "id": "m_hold_salary",
+   "skill": "hold",
+   "setting": "appraisal",
+   "pressure": 3,
+   "title": "Salary push-back",
+   "context": "You asked for a 20% raise. HR replies:",
+   "line": "The maximum we can do is 8%. That's the budget.",
+   "situation": "Market rate for your role is about 18% higher than your salary. You have an offer conversation elsewhere but no offer yet.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Use market facts",
+     "patterns": [
+      "\\d",
+      "\\b(market|role|similar|industry|rate|benchmark|data)\\b"
+     ],
+     "tip": "Anchor on market data, not need."
+    },
+    "options"
+   ],
+   "topic": [
+    "raise",
+    "salary",
+    "market",
+    "budget",
+    "role",
+    "increase",
+    "review",
+    "bonus"
+   ],
+   "question": "If the budget is fixed, what else could move: timing, bonus, title?",
+   "models": [
+    "I understand budgets are fixed. The market rate for my role is about 18% above my current salary. Could we do 8% now with a review in six months, or a one-time bonus to close the gap?",
+    "Thanks for being clear about the budget. Based on market data for similar roles, 8% leaves a big gap. Is there flexibility on a bonus or an earlier review?"
+   ],
+   "tests": {
+    "pass": [
+     "I appreciate that. Market data shows my role pays about 18% more. Could we either add a bonus or review again in six months?"
+    ],
+    "fail": [
+     "Okay, 8% is fine. Sorry for asking."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_hold_deadline_pressure",
+   "skill": "hold",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "Pressure to cut testing",
+   "context": "Your manager says:",
+   "line": "Skip the tests for now. We'll test after the release.",
+   "situation": "The change touches payments. You think skipping tests is risky.",
+   "moves": [
+    "acknowledge",
+    "view",
+    "suggestion"
+   ],
+   "topic": [
+    "test",
+    "payment",
+    "release",
+    "risk",
+    "skip",
+    "change",
+    "hour",
+    "bug"
+   ],
+   "question": "What's the smallest amount of testing that would make you comfortable?",
+   "models": [
+    "I understand the time pressure. My concern is that this change touches payments, so a bug would cost real money. Could we run just the payment tests? That's about an hour.",
+    "I hear you. I'm not comfortable skipping tests on payment code. I'd suggest we test only the checkout flow before release."
+   ],
+   "tests": {
+    "pass": [
+     "I understand. Because it's payment code, I think we should at least run the payment tests. It takes an hour."
+    ],
+    "fail": [
+     "Okay, fine, no tests."
+    ]
+   }
+  },
+  {
+   "id": "m_hold_repeat_pushback",
+   "skill": "hold",
+   "setting": "meeting",
+   "pressure": 3,
+   "title": "Second push-back",
+   "context": "You raised a risk. A senior says, sharper this time:",
+   "line": "I already said it's fine. Let's move on.",
+   "situation": "Nothing new was said. The risk is still real: customer data could be exposed.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Keep the risk on record",
+     "patterns": [
+      "\\b(risk|data|customer|exposed|record|note|concern|security)\\b"
+     ],
+     "tip": "State the risk once more, briefly."
+    },
+    "suggestion"
+   ],
+   "topic": [
+    "risk",
+    "data",
+    "customer",
+    "exposed",
+    "security",
+    "concern",
+    "note",
+    "record",
+    "review"
+   ],
+   "question": "How can you avoid a fight in the room but make sure the risk is written down?",
+   "models": [
+    "Understood, I won't hold up the meeting. I'd just like it noted that customer data could be exposed. Could we review it after this, even for 15 minutes?",
+    "I hear you. My concern about customer data remains, so I'll send a short note with the details after the meeting, and we can decide offline."
+   ],
+   "tests": {
+    "pass": [
+     "Understood. I'd like to note the customer data risk. Can we discuss it for ten minutes after the meeting?"
+    ],
+    "fail": [
+     "Okay sorry, my mistake."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_th_retention",
+   "skill": "think",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "Unexpected strategy question",
+   "context": "The product head asks you:",
+   "line": "How would you improve user retention?",
+   "situation": "You haven't prepared, but you have ideas from user feedback.",
+   "moves": [
+    "structure",
+    {
+     "label": "Say how you'd verify",
+     "patterns": [
+      "\\b(check|verify|measure|test|data|experiment|look at)\\b"
+     ],
+     "tip": "Close with how you'd check it."
+    }
+   ],
+   "topic": [
+    "retention",
+    "user",
+    "onboarding",
+    "email",
+    "feature",
+    "churn",
+    "feedback",
+    "week",
+    "return"
+   ],
+   "question": "Can you put two ideas in order and say how you'd check them?",
+   "models": [
+    "Two things come to mind. First, many users drop off in week one, so I'd improve onboarding. Second, a weekly summary email to bring them back. I'd test both with a small group first.",
+    "Let me think out loud. My first thought is the empty first screen: users don't see value quickly. Then I'd look at the churn data to see when people leave."
+   ],
+   "tests": {
+    "pass": [
+     "First, I'd fix onboarding, because feedback says users get lost. Second, reminder emails. I'd measure retention for each change."
+    ],
+    "fail": [
+     "Umm, basically, make the app better, like, you know."
+    ]
+   }
+  },
+  {
+   "id": "m_th_prioritise",
+   "skill": "think",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "Too many tasks",
+   "context": "Your manager asks:",
+   "line": "You have five open tasks. Which one matters most?",
+   "situation": "You haven't thought about it explicitly.",
+   "moves": [
+    "structure",
+    "reason"
+   ],
+   "topic": [
+    "task",
+    "priority",
+    "urgent",
+    "deadline",
+    "client",
+    "bug",
+    "impact",
+    "first"
+   ],
+   "question": "What criterion would you use to rank them?",
+   "models": [
+    "Let me think. I'd rank by impact on customers. First, the login bug, because users are blocked. Second, the client report, since it's due Friday. The rest can wait a week.",
+    "My first thought: the payment fix, because it affects revenue. Then the report, because it has a deadline. I'd confirm with you if the priorities look right."
+   ],
+   "tests": {
+    "pass": [
+     "First the login bug, because users are blocked. Then the report due Friday."
+    ],
+    "fail": [
+     "All are important."
+    ]
+   }
+  },
+  {
+   "id": "m_th_why_late",
+   "skill": "think",
+   "setting": "standup",
+   "pressure": 2,
+   "title": "Why is it late?",
+   "context": "Your lead asks in stand-up:",
+   "line": "Why is the feature two days late?",
+   "situation": "There were two reasons: unclear requirements and a slow code review.",
+   "moves": [
+    "structure",
+    "ownership"
+   ],
+   "topic": [
+    "late",
+    "requirement",
+    "review",
+    "day",
+    "feature",
+    "clear",
+    "delay",
+    "finish"
+   ],
+   "question": "Can you give the reasons without sounding like excuses, and end with what's next?",
+   "models": [
+    "Two reasons. First, the requirements changed on Tuesday. Second, the review took a day longer. I'll finish the last part today and I'll flag changes earlier next time.",
+    "Two things slowed it down: changing requirements, then a slow review. Let me finish the remaining tests today."
+   ],
+   "tests": {
+    "pass": [
+     "Two reasons: requirements changed, and the review was slow. I'll finish it by tomorrow."
+    ],
+    "fail": [
+     "Not my fault, the requirements were bad."
+    ]
+   }
+  },
+  {
+   "id": "m_th_tradeoff",
+   "skill": "think",
+   "setting": "interview",
+   "pressure": 2,
+   "title": "Trade-off question",
+   "context": "The interviewer asks:",
+   "line": "Would you choose SQL or NoSQL for a chat app?",
+   "situation": "There's no single right answer. They want reasoning.",
+   "moves": [
+    "structure",
+    "reason"
+   ],
+   "topic": [
+    "sql",
+    "nosql",
+    "chat",
+    "message",
+    "scale",
+    "data",
+    "query",
+    "database",
+    "write"
+   ],
+   "question": "What would change your answer? Say that out loud.",
+   "models": [
+    "It depends on two things. First, the data: chat messages are simple and very many, which suits NoSQL. Second, the queries: if we need complex reports, SQL is better. For a typical chat app, I'd start with NoSQL for messages.",
+    "Let me reason it out. Since messages are write-heavy and simple, I'd lean NoSQL. But user accounts and payments fit SQL, so I might use both."
+   ],
+   "tests": {
+    "pass": [
+     "First, messages are write-heavy, so NoSQL fits. Second, user data is relational, so SQL suits it. I'd likely use both."
+    ],
+    "fail": [
+     "SQL, definitely, always."
+    ]
+   }
+  },
+  {
+   "id": "m_th_market",
+   "skill": "think",
+   "setting": "interview",
+   "pressure": 3,
+   "title": "Estimate the market",
+   "context": "The interviewer asks:",
+   "line": "How many people in India use food delivery apps every day?",
+   "situation": "Nobody knows exactly. They want to see a structured estimate.",
+   "moves": [
+    "structure",
+    "reason",
+    {
+     "label": "State assumptions",
+     "patterns": [
+      "\\b(assume|assuming|let's say|roughly|about|around|estimate)\\b"
+     ],
+     "tip": "Say your assumptions."
+    },
+    {
+     "label": "Use numbers",
+     "patterns": [
+      "\\d"
+     ],
+     "tip": "Put numbers on each step."
+    }
+   ],
+   "topic": [
+    "india",
+    "people",
+    "food",
+    "delivery",
+    "app",
+    "city",
+    "crore",
+    "lakh",
+    "order",
+    "million",
+    "urban"
+   ],
+   "question": "Which number do you roughly know to start from?",
+   "models": [
+    "Let me break it down. Assume about 50 crore people live in cities. Say 20% use delivery apps, that's 10 crore. If they order roughly twice a week, about 3 crore people order on a given day.",
+    "First, start with the urban population, roughly 50 crore. Assuming 1 in 5 uses these apps, that gives 10 crore users. Since most order a few times a week, I'd estimate about 2 to 4 crore daily."
+   ],
+   "tests": {
+    "pass": [
+     "First, assuming around 50 crore urban people and 20% using apps, that's roughly 10 crore. Then at about two orders a week, roughly 3 crore a day."
+    ],
+    "fail": [
+     "Maybe 10 crore? I'm not sure."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_th_bug_cause",
+   "skill": "think",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "Live incident: what happened?",
+   "context": "During an incident call, your manager asks:",
+   "line": "What do you think caused the checkout errors?",
+   "situation": "You're not sure. The errors started 10 minutes after the 3 pm deploy.",
+   "moves": [
+    {
+     "label": "Label guesses as guesses",
+     "patterns": [
+      "\\b(could be|might be|may be|one possibility|my guess|hypothes|hunch|possibly|it's possible|suspect)\\b"
+     ],
+     "tip": "\"One possibility is...\""
+    },
+    "share_known",
+    "ownership"
+   ],
+   "topic": [
+    "checkout",
+    "error",
+    "deploy",
+    "pm",
+    "rollback",
+    "log",
+    "release",
+    "change"
+   ],
+   "question": "What do you know for sure, and what is only a guess?",
+   "models": [
+    "I don't know yet. What I do know is the errors started ten minutes after the 3 pm deploy, so my guess is that release. I'll check the logs and we could roll back if it's confirmed.",
+    "One possibility is the 3 pm deploy, because the timing matches. I've seen errors only on checkout. Let me compare the logs before and after the release."
+   ],
+   "tests": {
+    "pass": [
+     "My guess is the 3 pm release, since errors began right after. I'll check the logs now."
+    ],
+    "fail": [
+     "Definitely the deploy."
+    ]
+   }
+  },
+  {
+   "id": "m_co_typo_client",
+   "skill": "correction",
+   "setting": "client",
+   "pressure": 2,
+   "title": "Wrong number in a proposal",
+   "context": "The client emails you:",
+   "line": "Your proposal says 50 licences, but we asked for 500.",
+   "situation": "You check: they're right. It's your typo.",
+   "moves": [
+    "accept_point",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "licen",
+    "proposal",
+    "number",
+    "typo",
+    "updated",
+    "version"
+   ],
+   "question": "What does the client need: a long apology, or a corrected proposal fast?",
+   "models": [
+    "You're right, that's my typo. I'll send the corrected proposal with 500 licences within the hour.",
+    "Thanks for catching that. I made a mistake. I'm sending an updated proposal with 500 licences today, by 3 pm."
+   ],
+   "tests": {
+    "pass": [
+     "Good catch, my mistake. I'll send the corrected version with 500 licences this afternoon."
+    ],
+    "fail": [
+     "Sorry sorry, I'm so sorry, it won't happen again, I was very busy."
+    ]
+   },
+   "allow": [
+    "sorry"
+   ]
+  },
+  {
+   "id": "m_co_code_review",
+   "skill": "correction",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "Harsh code review comment",
+   "context": "A senior writes on your pull request, in public:",
+   "line": "This approach is wrong. You're querying the database inside a loop.",
+   "situation": "They're right: it will be slow.",
+   "moves": [
+    "accept_point",
+    "ownership"
+   ],
+   "topic": [
+    "query",
+    "loop",
+    "database",
+    "batch",
+    "fix",
+    "approach",
+    "change",
+    "single"
+   ],
+   "question": "Can you take the correction in one line and show what you'll do?",
+   "models": [
+    "Good catch, you're right. I'll change it to a single batch query and push the update today.",
+    "Fair point, the loop will be slow. Let me rewrite it with one query and ping you for another look."
+   ],
+   "tests": {
+    "pass": [
+     "You're right, I missed that. I'll batch the query and update the PR today."
+    ],
+    "fail": [
+     "I tried my best, it works on my machine."
+    ]
+   }
+  },
+  {
+   "id": "m_co_missed_deadline",
+   "skill": "correction",
+   "setting": "1:1",
+   "pressure": 3,
+   "title": "You missed a deadline",
+   "context": "Your manager says:",
+   "line": "You told me Wednesday. It's Friday and it's still not done.",
+   "situation": "True. You underestimated and didn't warn them.",
+   "moves": [
+    "accept_point",
+    "ownership",
+    "timeline",
+    {
+     "label": "Prevent it next time",
+     "patterns": [
+      "\\b(going forward|next time|from now on|to avoid|to prevent|double[- ]?check|checklist|won't happen|in future|in the future|alert|test for)\\b"
+     ],
+     "tip": "Say what you'll change."
+    }
+   ],
+   "topic": [
+    "wednesday",
+    "friday",
+    "done",
+    "monday",
+    "deadline",
+    "warn",
+    "update",
+    "finish",
+    "estimate"
+   ],
+   "question": "What did your manager lose: the work, or the warning? What will you change?",
+   "models": [
+    "You're right, and I should have warned you on Tuesday. I'll have it finished by Monday noon. From now on, I'll flag delays as soon as I see them.",
+    "That's on me: I underestimated and didn't tell you early. I'll deliver it Monday morning, and going forward I'll send a quick update if an estimate slips."
+   ],
+   "tests": {
+    "pass": [
+     "You're right, I should have flagged it earlier. It will be done by Monday at 12, and next time I'll warn you as soon as it slips."
+    ],
+    "fail": [
+     "Sorry, but the requirements were unclear and I had too much work."
+    ]
+   },
+   "allow": [
+    "sorry"
+   ]
+  },
+  {
+   "id": "m_co_wrong_blame",
+   "skill": "correction",
+   "setting": "meeting",
+   "pressure": 3,
+   "title": "Blamed for someone else's bug",
+   "context": "In a meeting, your manager says:",
+   "line": "The crash yesterday came from your code.",
+   "situation": "You checked: the crash came from a library update another team deployed. Your code wasn't changed.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Evidence",
+     "patterns": [
+      "\\d",
+      "\\b(tested|checked|data|numbers?|logs?|feedback|results?|measured|saw|noticed|emails?|according to|records?|timeline|couldn't|struggled)\\b"
+     ],
+     "tip": "Back it up with something concrete."
+    },
+    "suggestion"
+   ],
+   "topic": [
+    "crash",
+    "library",
+    "update",
+    "code",
+    "deploy",
+    "log",
+    "team",
+    "change",
+    "yesterday"
+   ],
+   "question": "How do you correct the record without blaming the other team?",
+   "models": [
+    "I understand why it looked that way. I checked the logs: the crash started after the library update yesterday, and my code didn't change. Could we look at the timeline together?",
+    "Thanks for raising it. From what I found, the crash came from the library update, not a code change. I'd suggest we check with the platform team and add a test for it."
+   ],
+   "tests": {
+    "pass": [
+     "I see why it seemed like my code. The logs show the crash began after the library update. Can I share the timeline?"
+    ],
+    "fail": [
+     "Not my fault, the other team broke it."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_co_feedback_style",
+   "skill": "correction",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "Feedback on your tone",
+   "context": "Your manager says gently:",
+   "line": "Some people felt you were a bit dismissive in yesterday's meeting.",
+   "situation": "You didn't mean to be. You did interrupt someone twice.",
+   "moves": [
+    "acknowledge",
+    "specific_question"
+   ],
+   "topic": [
+    "meeting",
+    "dismissive",
+    "interrupt",
+    "feedback",
+    "people",
+    "tone",
+    "yesterday",
+    "say"
+   ],
+   "question": "Is this the moment to explain your intention, or to understand the impact?",
+   "models": [
+    "Thanks for telling me. I didn't mean it that way, but I did interrupt twice. Was there a specific moment that came across badly?",
+    "I appreciate the feedback. Could you tell me what I said that felt dismissive, so I can change it?"
+   ],
+   "tests": {
+    "pass": [
+     "Thank you for telling me. Which moment felt dismissive? I want to fix it."
+    ],
+    "fail": [
+     "That's not true, they're too sensitive."
+    ]
+   }
+  },
+  {
+   "id": "m_co_public_mistake",
+   "skill": "correction",
+   "setting": "meeting",
+   "pressure": 3,
+   "title": "Your mistake, found in a big meeting",
+   "context": "In front of 20 people, a director says:",
+   "line": "The numbers on slide 4 are last quarter's, not this quarter's.",
+   "situation": "She's right. You used the old file.",
+   "moves": [
+    "accept_point",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "slide",
+    "number",
+    "quarter",
+    "file",
+    "updated",
+    "correct",
+    "send"
+   ],
+   "question": "How short can your response be while still being complete?",
+   "models": [
+    "You're right, those are last quarter's numbers. I'll send the corrected slide to everyone right after this meeting.",
+    "Good catch, I used the old file. I'll share the updated slide 4 with the group within the hour."
+   ],
+   "tests": {
+    "pass": [
+     "You're right, my mistake. I'll send the corrected slide after the meeting."
+    ],
+    "fail": [
+     "Sorry ma'am, I tried my best, sorry."
+    ]
+   },
+   "allow": [
+    "sorry"
+   ],
+   "hard": true
+  },
+  {
+   "id": "m_to_leave",
+   "skill": "tone",
+   "setting": "email",
+   "pressure": 1,
+   "title": "Asking for leave",
+   "context": "Write a message to your manager, Rahul:",
+   "line": "(You need leave on 12–14 March. Asha will cover your tasks.)",
+   "situation": "You want to sound polite and professional, not subservient.",
+   "moves": [
+    {
+     "label": "Clear ask",
+     "patterns": [
+      "\\b(could|can|would) you\\b",
+      "\\bplease\\b",
+      "\\b(could|can|may) (i|we)\\b[^?.!]*\\?"
+     ],
+     "tip": "Put the ask in the first line."
+    },
+    {
+     "label": "Dates",
+     "patterns": [
+      "\\d"
+     ],
+     "tip": "Give exact dates."
+    },
+    {
+     "label": "Cover plan",
+     "patterns": [
+      "\\b(cover|covering|handover|backup|asha)\\b"
+     ],
+     "tip": "Say who covers your work."
+    }
+   ],
+   "topic": [
+    "leave",
+    "march",
+    "cover",
+    "asha",
+    "off",
+    "holiday",
+    "days"
+   ],
+   "question": "What's your manager's first worry when someone asks for leave?",
+   "models": [
+    "Hi Rahul, could I take leave on 12–14 March? Asha has agreed to cover my tasks. Thanks!",
+    "Hi Rahul, I'd like to request leave for 12–14 March. Could you approve it? Asha will cover the client reports while I'm away."
+   ],
+   "tests": {
+    "pass": [
+     "Hi Rahul, could you approve my leave for 12 to 14 March? Asha will cover my work."
+    ],
+    "fail": [
+     "Respected sir, kindly grant me leave, I humbly request you."
+    ]
+   },
+   "written": true
+  },
+  {
+   "id": "m_to_intro",
+   "skill": "tone",
+   "setting": "meeting",
+   "pressure": 1,
+   "title": "Introducing yourself",
+   "context": "A client call starts. The host says:",
+   "line": "Could you introduce yourself?",
+   "situation": "You're the developer on their project. Keep it short and confident.",
+   "moves": [
+    {
+     "label": "Name and role",
+     "patterns": [
+      "\\b(i'm|i am|this is)\\b"
+     ],
+     "tip": "Start with \"I'm ... and I...\""
+    },
+    {
+     "label": "What you do for them",
+     "patterns": [
+      "\\b(work on|working on|build|building|lead|leading|responsible for|handle|handling|developing|your project)\\b"
+     ],
+     "tip": "Say how you help them, not just your job title."
+    }
+   ],
+   "topic": [
+    "developer",
+    "project",
+    "build",
+    "work",
+    "app",
+    "team",
+    "name",
+    "responsible"
+   ],
+   "question": "What do the clients need to know about you in one or two sentences?",
+   "models": [
+    "Hi everyone, I'm Ravi. I'm the developer building your booking app, so I'm the right person for any technical questions.",
+    "Hello, this is Ravi. I work on the backend for your project and handle the integrations."
+   ],
+   "tests": {
+    "pass": [
+     "Hi, I'm Ravi, the developer on your project. I'm building the booking features."
+    ],
+    "fail": [
+     "Myself Ravi, I am just a developer only."
+    ]
+   }
+  },
+  {
+   "id": "m_to_escalate",
+   "skill": "tone",
+   "setting": "email",
+   "pressure": 2,
+   "title": "Escalating politely",
+   "context": "Write a short email to another team's lead, Karan:",
+   "line": "(Your API request has been waiting 2 weeks. It now blocks a client launch on the 25th.)",
+   "situation": "You want action without sounding rude or desperate.",
+   "moves": [
+    {
+     "label": "Clear ask",
+     "patterns": [
+      "\\b(could|can|would) you\\b",
+      "\\bplease\\b",
+      "\\b(could|can|may) (i|we)\\b[^?.!]*\\?"
+     ],
+     "tip": "Put the ask in the first line."
+    },
+    "timeline",
+    "reason"
+   ],
+   "topic": [
+    "api",
+    "request",
+    "launch",
+    "week",
+    "client",
+    "block",
+    "access"
+   ],
+   "question": "What makes Karan want to help you today rather than next week?",
+   "models": [
+    "Hi Karan, could your team look at our API access request this week? It's now blocking a client launch on the 25th, because we can't test without it. Thanks!",
+    "Hi Karan, following up on our API request from two weeks ago. Could you give us an update by Wednesday? The client launch on the 25th depends on it."
+   ],
+   "tests": {
+    "pass": [
+     "Hi Karan, could you prioritise our API request? It blocks a client launch on the 25th, so we need it by Wednesday."
+    ],
+    "fail": [
+     "Hi, gentle reminder, please do the needful at the earliest."
+    ]
+   },
+   "written": true
+  },
+  {
+   "id": "m_to_decline_meeting",
+   "skill": "tone",
+   "setting": "email",
+   "pressure": 1,
+   "title": "Declining a meeting",
+   "context": "Write a reply to a colleague's meeting invite:",
+   "line": "(You have a client call at the same time. You could join tomorrow, or read the notes.)",
+   "situation": "Short, polite, helpful.",
+   "moves": [
+    {
+     "label": "Say no clearly",
+     "patterns": [
+      "\\b(can't|won't be able|unable|not able|clash|conflict)\\b"
+     ],
+     "tip": "Say you can't make it."
+    },
+    "options"
+   ],
+   "topic": [
+    "meeting",
+    "call",
+    "client",
+    "tomorrow",
+    "notes",
+    "join"
+   ],
+   "question": "Can you say no and offer something useful in two sentences?",
+   "models": [
+    "Thanks for the invite. I have a client call at that time, so I can't join. Could we meet tomorrow instead, or could you share the notes?",
+    "I won't be able to make it because of a client call. Happy to join tomorrow, or I'll read the notes and send my comments."
+   ],
+   "tests": {
+    "pass": [
+     "I can't join because of a client call. Could you send the notes, or can we meet tomorrow?"
+    ],
+    "fail": [
+     "Sorry sorry, I am so sorry, I can't come."
+    ]
+   },
+   "written": true
+  },
+  {
+   "id": "m_to_reply_client_complaint",
+   "skill": "tone",
+   "setting": "email",
+   "pressure": 3,
+   "title": "Reply to an angry email",
+   "context": "A client writes in capitals:",
+   "line": "THIS IS THE THIRD TIME THE APP HAS CRASHED. FIX IT NOW.",
+   "situation": "Your team found the cause and a fix is going out today.",
+   "moves": [
+    "acknowledge",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "crash",
+    "app",
+    "fix",
+    "today",
+    "cause",
+    "update",
+    "release"
+   ],
+   "question": "How do you stay calm and warm in writing when they're shouting?",
+   "models": [
+    "I understand, three crashes is unacceptable. We found the cause, and the fix goes live today by 6 pm. I'll confirm with you as soon as it's out.",
+    "Thank you for telling us, and I'm sorry for the trouble. Our team has found the cause of the crash. I'll send you an update when the fix is live this evening."
+   ],
+   "tests": {
+    "pass": [
+     "I understand how frustrating this is. We've found the cause, and the fix will be live today. I'll update you by 6 pm."
+    ],
+    "fail": [
+     "Please calm down, we are working on it."
+    ]
+   },
+   "written": true,
+   "allow": [
+    "sorry"
+   ]
+  },
+  {
+   "id": "m_to_ask_help",
+   "skill": "tone",
+   "setting": "1:1",
+   "pressure": 1,
+   "title": "Asking a senior for help",
+   "context": "Write a chat message to a senior engineer, Neha:",
+   "line": "(You're stuck on a deployment error for 2 hours. You want 15 minutes of her time.)",
+   "situation": "Respect her time. Be specific.",
+   "moves": [
+    {
+     "label": "Clear ask",
+     "patterns": [
+      "\\b(could|can|would) you\\b",
+      "\\bplease\\b",
+      "\\b(could|can|may) (i|we)\\b[^?.!]*\\?"
+     ],
+     "tip": "Put the ask in the first line."
+    },
+    {
+     "label": "What you tried",
+     "patterns": [
+      "\\b(tried|checked|looked|searched|tested)\\b"
+     ],
+     "tip": "Show you tried first."
+    },
+    "timeline"
+   ],
+   "topic": [
+    "deploy",
+    "error",
+    "minutes",
+    "stuck",
+    "hour",
+    "help",
+    "look",
+    "tried"
+   ],
+   "question": "What will make Neha say yes quickly?",
+   "models": [
+    "Hi Neha, could you spare 15 minutes today? I'm stuck on a deployment error. I've tried rebuilding and checked the logs, but it still fails.",
+    "Hi Neha, quick ask: I've been stuck on a deploy error for two hours. I've checked the config and logs. Could you look at it with me for 15 minutes this afternoon?"
+   ],
+   "tests": {
+    "pass": [
+     "Hi Neha, could you help me for 15 minutes today? I've tried the usual fixes for this deploy error, but it still fails."
+    ],
+    "fail": [
+     "Hi, sorry to disturb, I have a small doubt."
+    ]
+   },
+   "written": true
+  },
+  {
+   "id": "m_to_thank",
+   "skill": "tone",
+   "setting": "email",
+   "pressure": 1,
+   "title": "Thanking a colleague",
+   "context": "Write a short message to thank a colleague, Imran:",
+   "line": "(He stayed late to help you fix a production issue.)",
+   "situation": "Specific thanks sound sincere; generic thanks sound automatic.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Be specific",
+     "patterns": [
+      "\\b(late|production|issue|fix|night|helped|stayed)\\b"
+     ],
+     "tip": "Say exactly what they did."
+    }
+   ],
+   "topic": [
+    "late",
+    "production",
+    "issue",
+    "fix",
+    "help",
+    "night",
+    "stayed",
+    "thanks"
+   ],
+   "question": "What exactly did Imran do that mattered?",
+   "models": [
+    "Hi Imran, thank you for staying late last night to fix the production issue with me. We wouldn't have solved it so fast without you.",
+    "Thanks a lot, Imran. I really appreciate you helping with the production fix last night. It saved the client launch."
+   ],
+   "tests": {
+    "pass": [
+     "Thank you, Imran, for staying late to help fix the production issue. It made a big difference."
+    ],
+    "fail": [
+     "Thanks for the same."
+    ]
+   },
+   "written": true
+  },
+  {
+   "id": "m_to_status_email",
+   "skill": "tone",
+   "setting": "email",
+   "pressure": 2,
+   "title": "Weekly status to a client",
+   "context": "Write a short weekly status update to a client:",
+   "line": "(Done: login and search. Next: payments by Friday. Risk: waiting for their API keys.)",
+   "situation": "Main point first. Easy to scan.",
+   "moves": [
+    {
+     "label": "Main point first",
+     "first_sentence": true,
+     "patterns": [
+      "\\b(done|finished|completed|delivered|on track|this week)\\b"
+     ],
+     "tip": "Start with the headline."
+    },
+    "timeline",
+    {
+     "label": "Clear ask",
+     "patterns": [
+      "\\b(could|can|would) you\\b",
+      "\\bplease\\b",
+      "\\b(could|can|may) (i|we)\\b[^?.!]*\\?"
+     ],
+     "tip": "Put the ask in the first line."
+    }
+   ],
+   "topic": [
+    "login",
+    "search",
+    "payment",
+    "friday",
+    "api",
+    "key",
+    "done",
+    "week",
+    "risk"
+   ],
+   "question": "If they read only your first line, what should they know?",
+   "models": [
+    "This week we finished login and search. Next, payments by Friday. One risk: we still need your API keys. Could you send them by Wednesday?",
+    "We're on track: login and search are done. Payments come next, due Friday. Could you share the API keys by Wednesday so we stay on schedule?"
+   ],
+   "tests": {
+    "pass": [
+     "Login and search are done this week. Payments are due Friday. Could you please send the API keys by Wednesday?"
+    ],
+    "fail": [
+     "Dear sir, please find attached the status. Kindly revert."
+    ]
+   },
+   "written": true
+  },
+  {
+   "id": "m_to_feedback_junior",
+   "skill": "tone",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "Giving feedback to a junior",
+   "context": "A junior teammate's report had many errors. You say:",
+   "line": "(Give feedback that's honest, specific and kind.)",
+   "situation": "You want them to improve, not to feel crushed.",
+   "moves": [
+    {
+     "label": "Specific observation",
+     "patterns": [
+      "\\d",
+      "\\b(error|mistake|numbers?|table|section|page|chart)\\b"
+     ],
+     "tip": "Point to what you saw."
+    },
+    "suggestion",
+    "acknowledge"
+   ],
+   "topic": [
+    "report",
+    "error",
+    "number",
+    "table",
+    "check",
+    "section",
+    "review",
+    "next"
+   ],
+   "question": "Observation, impact, suggestion: can you fit all three in?",
+   "models": [
+    "Thanks for getting the report done. I noticed a few errors in the numbers in section 2. Could we go through a quick checklist together before the next one?",
+    "I appreciate the effort on this. There were five errors in the tables. I'd suggest double-checking totals against the source. Happy to show you how I do it."
+   ],
+   "tests": {
+    "pass": [
+     "Thanks for the report. Section 2 has several wrong numbers. Could you check the totals before sending next time? I can help."
+    ],
+    "fail": [
+     "This report is useless, so careless."
+    ]
+   }
+  },
+  {
+   "id": "m_idk_new_domain",
+   "skill": "idk",
+   "setting": "client",
+   "pressure": 2,
+   "title": "Client's industry term",
+   "context": "The client asks:",
+   "line": "Will your system handle GST e-invoicing out of the box?",
+   "situation": "You're not sure what is supported for GST e-invoicing.",
+   "moves": [
+    "admit_gap",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "gst",
+    "invoice",
+    "invoicing",
+    "tax",
+    "support",
+    "system"
+   ],
+   "question": "What would make the client trust your next answer?",
+   "models": [
+    "I'm not sure about GST e-invoicing specifically. I'll check with our product team and confirm by tomorrow.",
+    "Good question. I don't want to guess on tax features. Let me confirm what we support and email you today."
+   ],
+   "tests": {
+    "pass": [
+     "I don't know if e-invoicing is built in. I'll confirm with product and reply by Thursday."
+    ],
+    "fail": [
+     "Yes yes, definitely, everything is supported."
+    ]
+   }
+  },
+  {
+   "id": "m_cl_priority_conflict",
+   "skill": "clarify",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "Two managers, two priorities",
+   "context": "Your second manager says:",
+   "line": "Drop everything and work on the audit.",
+   "situation": "Your main manager told you yesterday that the release is top priority.",
+   "moves": [
+    "specific_question"
+   ],
+   "topic": [
+    "audit",
+    "release",
+    "priority",
+    "manager",
+    "first",
+    "both",
+    "deadline"
+   ],
+   "question": "Who should decide the conflict: you, or the managers?",
+   "models": [
+    "Understood. Yesterday I was told the release is top priority. Should I pause the release for the audit, or could you confirm with Meera first?",
+    "Happy to help with the audit. Since the release is also urgent, which one should come first? I can set up a quick call with both of you."
+   ],
+   "tests": {
+    "pass": [
+     "Sure. Which comes first, the audit or the release? I was told the release was top priority yesterday."
+    ],
+    "fail": [
+     "Okay, sure."
+    ]
+   }
+  },
+  {
+   "id": "m_dis_hiring",
+   "skill": "disagree",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "Disagreeing about a candidate",
+   "context": "After an interview, your colleague says:",
+   "line": "Let's hire him. He's clearly the best.",
+   "situation": "You noticed he couldn't explain basic SQL joins, which the role needs every day.",
+   "moves": [
+    {
+     "label": "Evidence",
+     "patterns": [
+      "\\d",
+      "\\b(tested|checked|data|numbers?|logs?|feedback|results?|measured|saw|noticed|emails?|according to|records?|timeline|couldn't|struggled)\\b"
+     ],
+     "tip": "Back it up with something concrete."
+    },
+    "view",
+    "suggestion"
+   ],
+   "topic": [
+    "sql",
+    "join",
+    "candidate",
+    "hire",
+    "role",
+    "interview",
+    "test",
+    "skill"
+   ],
+   "question": "What specific moment from the interview can you share?",
+   "models": [
+    "One concern: I noticed he couldn't explain SQL joins, and this role uses them every day. I'd suggest a short practical test before we decide.",
+    "I see his strengths, but my concern is SQL: he struggled with a basic join question. Could we do a quick technical follow-up?"
+   ],
+   "tests": {
+    "pass": [
+     "I noticed he couldn't explain joins, which we need daily. I think we should do a technical follow-up first."
+    ],
+    "fail": [
+     "He's bad. No."
+    ]
+   }
+  },
+  {
+   "id": "m_hold_interrupt_senior",
+   "skill": "hold",
+   "setting": "meeting",
+   "pressure": 3,
+   "title": "A senior talks over you",
+   "context": "You're explaining your proposal. The VP cuts in:",
+   "line": "Okay, okay, I get it, but—",
+   "situation": "You're one sentence away from your key point: the cost saving.",
+   "moves": [
+    {
+     "label": "Keep the floor politely",
+     "patterns": [
+      "\\b(let me|i'd like to|can i|allow me to|i want to) (just )?(finish|complete|wrap up|close|add)",
+      "\\bone (second|moment|sec)\\b",
+      "\\bbefore we move on\\b",
+      "\\bif i (may|could) (finish|add)\\b"
+     ],
+     "tip": "\"Let me finish this point...\""
+    },
+    {
+     "label": "Land the key point",
+     "patterns": [
+      "\\b(costs?|savings?|saves?|lakhs?|percent)\\b",
+      "%",
+      "\\d"
+     ],
+     "tip": "Say the one thing that matters."
+    }
+   ],
+   "topic": [
+    "cost",
+    "saving",
+    "point",
+    "finish",
+    "second",
+    "save",
+    "proposal",
+    "lakh"
+   ],
+   "question": "With a VP, how do you keep the floor in one short, respectful sentence?",
+   "models": [
+    "If I may finish one point: this saves about 12 lakhs a year. Then I'd love your view.",
+    "One second, there's one key point: it cuts our cost by 30%. Then I'll hand it over to you."
+   ],
+   "tests": {
+    "pass": [
+     "One moment, please. The key point is that it saves 10 lakhs a year. Then I'd like your thoughts."
+    ],
+    "fail": [
+     "Sorry sir, go ahead."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_th_unknown_question",
+   "skill": "think",
+   "setting": "client",
+   "pressure": 2,
+   "title": "Client asks something new",
+   "context": "The client asks:",
+   "line": "What would it take to add offline mode to the app?",
+   "situation": "You haven't thought about it, but you know the app needs the server for most features.",
+   "moves": [
+    "structure",
+    "admit_gap",
+    "ownership"
+   ],
+   "topic": [
+    "offline",
+    "mode",
+    "app",
+    "server",
+    "sync",
+    "data",
+    "cache",
+    "estimate"
+   ],
+   "question": "Can you think out loud usefully, while making clear it's a first thought?",
+   "models": [
+    "Let me think out loud, though I'd need to check details. Two parts: first, storing data on the phone; second, syncing it back when online. I'll get you a proper estimate by Friday.",
+    "My first thought is it depends on which features need offline. I'm not sure of the effort yet. Let me discuss with the team and send you options this week."
+   ],
+   "tests": {
+    "pass": [
+     "First, we'd cache data on the device. Second, sync when online. I'm not sure of the cost yet, so I'll send an estimate by Friday."
+    ],
+    "fail": [
+     "Easy, two days."
+    ]
+   }
+  },
+  {
+   "id": "m_co_misunderstood_task",
+   "skill": "correction",
+   "setting": "standup",
+   "pressure": 2,
+   "title": "You built the wrong thing",
+   "context": "Your lead says in stand-up:",
+   "line": "That's not what I asked for. I wanted a CSV export, not a PDF.",
+   "situation": "Looking back, the ticket said CSV.",
+   "moves": [
+    "accept_point",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "csv",
+    "pdf",
+    "export",
+    "ticket",
+    "change",
+    "build",
+    "tomorrow"
+   ],
+   "question": "One sentence to own it, one to fix it. Can you do it?",
+   "models": [
+    "You're right, the ticket says CSV. I'll switch it to a CSV export and have it ready by tomorrow.",
+    "My mistake, I misread it. I'll build the CSV version today and keep the PDF code in case we need it later."
+   ],
+   "tests": {
+    "pass": [
+     "You're right, I misread the ticket. I'll have the CSV export done by tomorrow morning."
+    ],
+    "fail": [
+     "I tried my best, PDF is better anyway."
+    ]
+   }
+  },
+  {
+   "id": "m_to_interview_close",
+   "skill": "tone",
+   "setting": "interview",
+   "pressure": 2,
+   "title": "Interview: 'Any questions for us?'",
+   "context": "At the end of an interview:",
+   "line": "Do you have any questions for us?",
+   "situation": "You want to sound engaged and confident, not desperate.",
+   "moves": [
+    "specific_question"
+   ],
+   "topic": [
+    "team",
+    "role",
+    "success",
+    "month",
+    "challenge",
+    "work",
+    "first",
+    "project",
+    "look"
+   ],
+   "question": "What question would show you're already thinking like a member of the team?",
+   "models": [
+    "Yes, two. What would success look like in the first three months? And what's the biggest challenge the team is facing right now?",
+    "Thanks, I do. Which project would I work on first, and how does the team usually review code?"
+   ],
+   "tests": {
+    "pass": [
+     "Yes: what does success look like in this role after six months?"
+    ],
+    "fail": [
+     "No, nothing. Sorry, I just wanted to say thank you."
+    ]
+   }
+  },
+  {
+   "id": "m_to_standup_update",
+   "skill": "tone",
+   "setting": "standup",
+   "pressure": 1,
+   "title": "A clear stand-up update",
+   "context": "It's your turn in stand-up:",
+   "line": "(Yesterday: finished the search API. Today: tests. Blocker: need database access from IT.)",
+   "situation": "Keep it under 20 seconds.",
+   "moves": [
+    {
+     "label": "Done / doing",
+     "patterns": [
+      "\\b(yesterday|finished|done|completed)\\b",
+      "\\btoday\\b"
+     ],
+     "tip": "Yesterday, today."
+    },
+    {
+     "label": "Blocker + ask",
+     "patterns": [
+      "\\b(block\\w*|waiting|need)\\b"
+     ],
+     "tip": "Name the blocker and who can help."
+    }
+   ],
+   "topic": [
+    "search",
+    "api",
+    "test",
+    "database",
+    "access",
+    "it",
+    "blocker",
+    "today",
+    "yesterday"
+   ],
+   "question": "Could someone act on your blocker right after hearing it?",
+   "models": [
+    "Yesterday I finished the search API. Today I'm writing tests. One blocker: I need database access from IT. Could someone help me get it?",
+    "Search API is done. Today: tests. I'm blocked on database access; I've raised a ticket with IT, and I'll chase it after this."
+   ],
+   "tests": {
+    "pass": [
+     "Finished the search API yesterday. Today, tests. Blocker: I need database access from IT."
+    ],
+    "fail": [
+     "So basically, umm, I was doing some things, like, the API stuff, you know."
+    ]
+   }
+  },
+  {
+   "id": "m_hold_client_blame",
+   "skill": "hold",
+   "setting": "client",
+   "pressure": 3,
+   "title": "Client blames your team publicly",
+   "context": "On a call with their management, the client says:",
+   "line": "Your team is the reason we missed our launch.",
+   "situation": "The launch slipped because their approvals took three weeks. You have the email dates.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Evidence",
+     "patterns": [
+      "\\d",
+      "\\b(tested|checked|data|numbers?|logs?|feedback|results?|measured|saw|noticed|emails?|according to|records?|timeline|couldn't|struggled)\\b"
+     ],
+     "tip": "Back it up with something concrete."
+    },
+    "suggestion"
+   ],
+   "topic": [
+    "launch",
+    "approval",
+    "week",
+    "email",
+    "date",
+    "delay",
+    "timeline",
+    "plan"
+   ],
+   "question": "How can you state the facts without making it a fight in front of their bosses?",
+   "models": [
+    "I understand how important the launch was. Looking at the timeline, approvals took about three weeks, from the 2nd to the 23rd. I'd suggest we review the timeline together and agree how to speed up approvals.",
+    "I hear the frustration. To be accurate, the delay came mainly from approvals, which took three weeks according to the emails. Could we plan a faster approval process for phase two?"
+   ],
+   "tests": {
+    "pass": [
+     "I understand. The emails show approvals took three weeks, which moved the launch. Could we review the timeline together?"
+    ],
+    "fail": [
+     "That's your fault, not ours."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_dis_meeting_time",
+   "skill": "disagree",
+   "setting": "1:1",
+   "pressure": 1,
+   "title": "Meetings eating your day",
+   "context": "Your manager adds another recurring meeting and says:",
+   "line": "One more weekly sync, just 30 minutes.",
+   "situation": "You already have 12 hours of meetings a week and little time to code.",
+   "moves": [
+    {
+     "label": "Evidence",
+     "patterns": [
+      "\\d",
+      "\\b(tested|checked|data|numbers?|logs?|feedback|results?|measured|saw|noticed|emails?|according to|records?|timeline|couldn't|struggled)\\b"
+     ],
+     "tip": "Back it up with something concrete."
+    },
+    "view",
+    "suggestion"
+   ],
+   "topic": [
+    "meeting",
+    "sync",
+    "hour",
+    "week",
+    "code",
+    "focus",
+    "async"
+   ],
+   "question": "Can a number make your point for you?",
+   "models": [
+    "I already have about 12 hours of meetings a week, so I'm worried about focus time. Could we make this sync async, with written updates?",
+    "My concern is time: 12 hours of meetings already. I'd suggest we merge this with the Tuesday meeting instead of adding a new one."
+   ],
+   "tests": {
+    "pass": [
+     "I have 12 hours of meetings weekly. Could we combine this with an existing one?"
+    ],
+    "fail": [
+     "Ugh, more meetings, whatever."
+    ]
+   }
+  },
+  {
+   "id": "m_cl_new_boss",
+   "skill": "clarify",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "First 1:1 with a new manager",
+   "context": "Your new manager asks:",
+   "line": "What do you need from me?",
+   "situation": "You want to understand how they like to work too.",
+   "moves": [
+    "specific_question"
+   ],
+   "topic": [
+    "update",
+    "communicat",
+    "prefer",
+    "week",
+    "priority",
+    "work",
+    "feedback",
+    "need"
+   ],
+   "question": "What questions would avoid misunderstandings in the next three months?",
+   "models": [
+    "Thanks for asking. Two things: how do you prefer updates, chat or a weekly summary? And what are your top priorities for our team this quarter?",
+    "Clear priorities help me most. Could you tell me what success looks like for my role this quarter, and how you like to give feedback?"
+   ],
+   "tests": {
+    "pass": [
+     "Could you share your top priorities for the team, and how you'd like me to update you?"
+    ],
+    "fail": [
+     "Nothing sir, everything is fine."
+    ]
+   }
+  },
+  {
+   "id": "m_idk_hard_client_tech",
+   "skill": "idk",
+   "setting": "client",
+   "pressure": 3,
+   "title": "Senior client tests you",
+   "context": "The client's CTO asks, a bit aggressively:",
+   "line": "Is your encryption AES-256 at rest and in transit, or not?",
+   "situation": "You know data is encrypted in transit with TLS. You're not sure about the exact at-rest algorithm.",
+   "moves": [
+    "share_known",
+    "admit_gap",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "aes",
+    "encrypt",
+    "tls",
+    "rest",
+    "transit",
+    "security",
+    "data"
+   ],
+   "question": "How can you be precise about what you know, without bluffing the rest?",
+   "models": [
+    "In transit, yes: all traffic uses TLS. For data at rest, I don't want to guess the exact algorithm. I'll confirm with our security team and send it in writing by tomorrow.",
+    "What I can confirm is TLS for data in transit. I'm not certain the at-rest encryption is AES-256 specifically, so I'll get you the security document today."
+   ],
+   "tests": {
+    "pass": [
+     "I can confirm TLS in transit. I'm not sure about the at-rest algorithm, so I'll send the security details by tomorrow."
+    ],
+    "fail": [
+     "Yes, AES-256 everywhere, 100%."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_co_feedback_presentation",
+   "skill": "correction",
+   "setting": "appraisal",
+   "pressure": 2,
+   "title": "Feedback in your appraisal",
+   "context": "Your manager says:",
+   "line": "Your communication with stakeholders needs to improve.",
+   "situation": "You're surprised. You want to understand and improve, not defend yourself.",
+   "moves": [
+    "acknowledge",
+    "specific_question"
+   ],
+   "topic": [
+    "communicat",
+    "stakeholder",
+    "example",
+    "improve",
+    "update",
+    "meeting",
+    "feedback"
+   ],
+   "question": "Defend or understand: which one gets you a better rating next year?",
+   "models": [
+    "Thanks for telling me. Could you share a specific example, so I know what to change?",
+    "I appreciate that. Which stakeholders felt it, and was it about how often I updated them or how clearly?"
+   ],
+   "tests": {
+    "pass": [
+     "Thank you. Could you give me an example of where my communication fell short?"
+    ],
+    "fail": [
+     "I don't agree, I always communicate well."
+    ]
+   }
+  },
+  {
+   "id": "m_th_weakness",
+   "skill": "think",
+   "setting": "interview",
+   "pressure": 2,
+   "title": "\"What's your biggest weakness?\"",
+   "context": "The interviewer asks:",
+   "line": "What's your biggest weakness?",
+   "situation": "You tend to say yes to too much work. You've started using a priority list.",
+   "moves": [
+    {
+     "label": "Name a real weakness",
+     "patterns": [
+      "\\b(weakness|i tend to|i used to|overcommit\\w*|i struggle)\\b"
+     ],
+     "tip": "Name one real weakness."
+    },
+    {
+     "label": "Show what you're doing about it",
+     "patterns": [
+      "\\b(now|started|learning|working on|i use|i've started|these days|helped)\\b"
+     ],
+     "tip": "Pair the weakness with the fix."
+    }
+   ],
+   "topic": [
+    "weakness",
+    "yes",
+    "work",
+    "priorit",
+    "list",
+    "task",
+    "deadline",
+    "overcommit"
+   ],
+   "question": "A real weakness plus a real fix: can you give both in three sentences?",
+   "models": [
+    "I used to say yes to too much work, which hurt my deadlines. Two things helped: first, I now keep a priority list; second, I check my capacity before agreeing to new tasks.",
+    "My weakness is overcommitting. I've started reviewing my task list with my manager every Monday, and that has made my deadlines much more reliable."
+   ],
+   "tests": {
+    "pass": [
+     "I tend to overcommit. These days I use a priority list and check my workload before saying yes."
+    ],
+    "fail": [
+     "I don't have any weakness, I'm a perfectionist."
+    ]
+   }
+  },
+  {
+   "id": "m_th_conflict_story",
+   "skill": "think",
+   "setting": "interview",
+   "pressure": 2,
+   "title": "\"Tell me about a conflict\"",
+   "context": "The interviewer asks:",
+   "line": "Tell me about a time you disagreed with a teammate.",
+   "situation": "You disagreed with a teammate about the database design last year. You suggested a test, and the data decided.",
+   "moves": [
+    "structure",
+    "reason",
+    {
+     "label": "Result",
+     "patterns": [
+      "\\b(result|in the end|finally|we chose|we agreed|turned out|so we)\\b"
+     ],
+     "tip": "End with what happened."
+    }
+   ],
+   "topic": [
+    "disagree",
+    "teammate",
+    "database",
+    "design",
+    "test",
+    "data",
+    "chose",
+    "agreed",
+    "result"
+   ],
+   "question": "Situation, action, result: can you tell it in that order?",
+   "models": [
+    "Last year a teammate and I disagreed about the database design. First, I asked to test both designs with real data, because opinions weren't settling it. In the end the test showed his design was faster, so we chose it.",
+    "My teammate wanted one large table; I wanted two. I suggested we measure both with real queries, since that would be fair. The result favoured two tables, and we agreed quickly."
+   ],
+   "tests": {
+    "pass": [
+     "We disagreed on the database design. I suggested testing both, because data is fairer than opinions. In the end we chose the faster one."
+    ],
+    "fail": [
+     "I never have conflicts, everyone likes me."
+    ]
+   }
+  },
+  {
+   "id": "m_th_unknown_cause",
+   "skill": "think",
+   "setting": "standup",
+   "pressure": 2,
+   "title": "Numbers look odd",
+   "context": "Your lead asks in stand-up:",
+   "line": "Why are yesterday's sales numbers so low?",
+   "situation": "You don't know. You know the payment provider had an outage in the evening.",
+   "moves": [
+    {
+     "label": "Label guesses as guesses",
+     "patterns": [
+      "\\b(could be|might be|may be|one possibility|my guess|hypothes|hunch|possibly|it's possible|suspect)\\b"
+     ],
+     "tip": "\"One possibility is...\""
+    },
+    "share_known",
+    "ownership"
+   ],
+   "topic": [
+    "sales",
+    "number",
+    "payment",
+    "outage",
+    "evening",
+    "yesterday",
+    "provider",
+    "check"
+   ],
+   "question": "What's a fact here, and what's a guess?",
+   "models": [
+    "I don't know yet. What I do know is the payment provider had an outage yesterday evening, so that's my first guess. I'll compare hourly sales with the outage window and report back by noon.",
+    "One possibility is the payment outage in the evening. I'll check the hourly numbers to confirm and share it in the channel today."
+   ],
+   "tests": {
+    "pass": [
+     "My guess is the payment outage last evening. I'll compare the hourly sales and update you by 12."
+    ],
+    "fail": [
+     "Definitely the outage."
+    ]
+   }
+  },
+  {
+   "id": "m_th_improve_process",
+   "skill": "think",
+   "setting": "1:1",
+   "pressure": 1,
+   "title": "Suggest an improvement",
+   "context": "Your manager asks in your 1:1:",
+   "line": "If you could change one thing about how our team works, what would it be?",
+   "situation": "You think code reviews take too long, often two days.",
+   "moves": [
+    "view",
+    "reason",
+    "suggestion"
+   ],
+   "topic": [
+    "review",
+    "code",
+    "day",
+    "team",
+    "pr",
+    "wait",
+    "faster"
+   ],
+   "question": "How can you make it a proposal, not a complaint?",
+   "models": [
+    "I'd change code reviews. They often take two days, which slows every release. What if we set a one-day review target and rotate a reviewer each week?",
+    "My suggestion is faster reviews, because PRs wait about two days now. Could we try a daily 30-minute review slot for the team?"
+   ],
+   "tests": {
+    "pass": [
+     "Code reviews, because they take two days and slow us down. I'd suggest a one-day target."
+    ],
+    "fail": [
+     "Everything is fine, nothing to change."
+    ]
+   }
+  },
+  {
+   "id": "m_cl_email_unclear",
+   "skill": "clarify",
+   "setting": "email",
+   "pressure": 1,
+   "title": "An unclear email",
+   "context": "A colleague emails:",
+   "line": "Please update the file as discussed and send it by EOD.",
+   "situation": "You were in two discussions this week. You don't know which file or which change.",
+   "moves": [
+    "specific_question"
+   ],
+   "topic": [
+    "file",
+    "update",
+    "discussed",
+    "change",
+    "eod",
+    "version",
+    "budget",
+    "deck"
+   ],
+   "question": "One clear question now, or a wrong file at 6 pm?",
+   "models": [
+    "Hi Sameer, happy to. Which file do you mean, the budget sheet or the client deck? And is the change the new prices?",
+    "Hi Sameer, just to confirm: is this the budget file from Tuesday's meeting? Which changes should I make?"
+   ],
+   "tests": {
+    "pass": [
+     "Could you tell me which file and which change you mean? I'll send it by EOD."
+    ],
+    "fail": [
+     "Ok sure, will do the needful."
+    ]
+   },
+   "written": true
+  },
+  {
+   "id": "m_cl_instructions_fast",
+   "skill": "clarify",
+   "setting": "1:1",
+   "pressure": 2,
+   "title": "Too many instructions at once",
+   "context": "Your manager quickly lists:",
+   "line": "Fix the bug, update the docs, email the client, and prepare tomorrow's demo.",
+   "situation": "You don't know the priority or the deadlines.",
+   "moves": [
+    "summarize_back",
+    "specific_question"
+   ],
+   "topic": [
+    "bug",
+    "docs",
+    "client",
+    "demo",
+    "tomorrow",
+    "first",
+    "priority",
+    "email"
+   ],
+   "question": "How can you repeat the list and get the order in one breath?",
+   "models": [
+    "Let me repeat to make sure: the bug, the docs, the client email and the demo. Which should come first, and is the demo the only one due tomorrow?",
+    "So four things: bug, docs, client email, demo. Do you want the demo ready before the bug fix?"
+   ],
+   "tests": {
+    "pass": [
+     "Just to confirm the four tasks: bug, docs, email, demo. Which is the priority?"
+    ],
+    "fail": [
+     "Yes yes, okay sure."
+    ]
+   }
+  },
+  {
+   "id": "m_cl_hostile_question",
+   "skill": "clarify",
+   "setting": "meeting",
+   "pressure": 3,
+   "title": "A loaded question",
+   "context": "A senior asks, a bit sharply, in front of everyone:",
+   "line": "Why is your team always late?",
+   "situation": "\"Always\" isn't true: one of the last five releases was late. You don't know which delay he means.",
+   "moves": [
+    "specific_question"
+   ],
+   "topic": [
+    "late",
+    "release",
+    "delay",
+    "always",
+    "team",
+    "date",
+    "project"
+   ],
+   "question": "Before defending, can you find out what he's really referring to?",
+   "models": [
+    "I want to understand the concern. Which delay are you thinking of? Of our last five releases, one was late, and I can explain that one.",
+    "Could you tell me which project you mean? I'd like to look at the specific delay with you."
+   ],
+   "tests": {
+    "pass": [
+     "Which release do you mean? I'd like to understand the specific delay."
+    ],
+    "fail": [
+     "We are not always late, that's wrong."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_dis_tool_choice",
+   "skill": "disagree",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "Switching tools mid-project",
+   "context": "Your lead says:",
+   "line": "Let's switch the whole project to the new framework this sprint.",
+   "situation": "You're halfway through. Switching now would cost about three weeks.",
+   "moves": [
+    "view",
+    "reason",
+    "options"
+   ],
+   "topic": [
+    "framework",
+    "switch",
+    "week",
+    "sprint",
+    "project",
+    "cost",
+    "release"
+   ],
+   "question": "Can you show the cost and offer a middle path?",
+   "models": [
+    "I like the new framework, but switching now would cost about three weeks, because we're halfway through. Could we either finish this release first, or try it on one small module?",
+    "My concern is timing: we'd lose roughly three weeks mid-project. One option is to use it for the next project; another is a small pilot this sprint."
+   ],
+   "tests": {
+    "pass": [
+     "I think switching now costs three weeks since we're halfway. Could we either pilot it on one module or switch after the release?"
+    ],
+    "fail": [
+     "No, that's stupid, we're halfway done."
+    ]
+   }
+  },
+  {
+   "id": "m_dis_client_design",
+   "skill": "disagree",
+   "setting": "client",
+   "pressure": 2,
+   "title": "Client wants a risky design",
+   "context": "The client says:",
+   "line": "Remove the confirmation step from payments. It slows users down.",
+   "situation": "Without it, users can pay twice by accident. Last month 2% of payments were corrected at that step.",
+   "moves": [
+    {
+     "label": "Evidence",
+     "patterns": [
+      "\\d",
+      "\\b(tested|checked|data|numbers?|logs?|feedback|results?|measured|saw|noticed|emails?|according to|records?|timeline|couldn't|struggled)\\b"
+     ],
+     "tip": "Back it up with something concrete."
+    },
+    "view",
+    "options"
+   ],
+   "topic": [
+    "payment",
+    "confirm",
+    "step",
+    "twice",
+    "user",
+    "slow",
+    "refund",
+    "faster"
+   ],
+   "question": "What does the client want underneath: fewer steps, or faster payments?",
+   "models": [
+    "I understand you want faster payments. Last month the confirmation step caught 2% of payments that would have been wrong. Could we either make it one tap, or show it only for large amounts?",
+    "My concern is double payments: 2% of users corrected mistakes at that step. What if we keep it but make it faster?"
+   ],
+   "tests": {
+    "pass": [
+     "The step caught 2% of wrong payments last month, so I'd keep it. Could we either simplify it or show it only for big payments?"
+    ],
+    "fail": [
+     "Okay, we will remove it."
+    ]
+   }
+  },
+  {
+   "id": "m_dis_meeting_decision",
+   "skill": "disagree",
+   "setting": "meeting",
+   "pressure": 3,
+   "title": "Everyone agrees except you",
+   "context": "Your team lead says:",
+   "line": "So we're all agreed: we drop the Android app?",
+   "situation": "Everyone nods. You have data: 40% of users are on Android.",
+   "moves": [
+    {
+     "label": "Evidence",
+     "patterns": [
+      "\\d",
+      "\\b(tested|checked|data|numbers?|logs?|feedback|results?|measured|saw|noticed|emails?|according to|records?|timeline|couldn't|struggled)\\b"
+     ],
+     "tip": "Back it up with something concrete."
+    },
+    "view",
+    "suggestion"
+   ],
+   "topic": [
+    "android",
+    "user",
+    "app",
+    "drop",
+    "data",
+    "decision"
+   ],
+   "question": "How do you speak up when the room has already decided?",
+   "models": [
+    "Before we decide, one data point: 40% of our users are on Android. I don't think we can drop it without a plan for them. Could we look at the numbers first?",
+    "I'm not sure I agree yet. Our data shows 40% of users on Android. I'd suggest we check revenue by platform before deciding."
+   ],
+   "tests": {
+    "pass": [
+     "One thing first: 40% of users are on Android. I think we should check the impact before deciding."
+    ],
+    "fail": [
+     "(Stays silent.) Yes, agreed."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_hold_vendor_push",
+   "skill": "hold",
+   "setting": "client",
+   "pressure": 2,
+   "title": "Vendor pushes a deal",
+   "context": "A software vendor says on a call:",
+   "line": "This price is only valid today. You need to sign now.",
+   "situation": "You need approval from finance, which takes two days.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "State your constraint",
+     "patterns": [
+      "\\b(currently|right now|this week|my plate|working on|committed to|bandwidth|capacity|due|deadline|approval|our process|policy)\\b"
+     ],
+     "tip": "Say what you're already committed to."
+    },
+    "options"
+   ],
+   "topic": [
+    "price",
+    "sign",
+    "today",
+    "finance",
+    "approval",
+    "days",
+    "deal",
+    "contract"
+   ],
+   "question": "Is a deadline you didn't agree to a reason to skip your process?",
+   "models": [
+    "I understand the offer is time-limited. Our process needs finance approval, which takes two days. Could you hold the price until Friday, or should we restart the talk next week?",
+    "Thanks for the offer. I can't sign without finance approval, and that's due Thursday. Either we keep this price until then, or we'll compare options next week."
+   ],
+   "tests": {
+    "pass": [
+     "I understand. I need finance approval, which takes two days. Could you hold the price until Thursday, or should we talk again next week?"
+    ],
+    "fail": [
+     "Okay, I'll sign now."
+    ]
+   }
+  },
+  {
+   "id": "m_hold_salary_negotiation_offer",
+   "skill": "hold",
+   "setting": "interview",
+   "pressure": 3,
+   "title": "Low job offer",
+   "context": "HR says:",
+   "line": "We can offer 12 lakhs. That's our standard for this role.",
+   "situation": "You expected 15. You have relevant skills they asked for: cloud and payments experience.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Anchor on value",
+     "patterns": [
+      "\\d",
+      "\\b(experience|skills?|cloud|payments?|market|role)\\b"
+     ],
+     "tip": "Link your number to what you bring."
+    },
+    "specific_question"
+   ],
+   "topic": [
+    "lakh",
+    "offer",
+    "salary",
+    "experience",
+    "cloud",
+    "payment",
+    "role",
+    "market"
+   ],
+   "question": "What would make 15 sound reasonable to them, not greedy?",
+   "models": [
+    "Thank you for the offer. Given my cloud and payments experience, which this role needs, I was expecting around 15 lakhs. Is there flexibility on the base or a joining bonus?",
+    "I appreciate it. Based on market rates and my payments experience, 15 lakhs would be fair. What room is there to move closer to that?"
+   ],
+   "tests": {
+    "pass": [
+     "Thanks. Considering my cloud experience, I expected 15 lakhs. Could you check if there's flexibility?"
+    ],
+    "fail": [
+     "Okay, 12 is fine, sorry."
+    ]
+   },
+   "hard": true
+  },
+  {
+   "id": "m_hold_peer_pressure",
+   "skill": "hold",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "A colleague brushes off your idea",
+   "context": "A colleague says with a laugh:",
+   "line": "That won't work. We tried something like that years ago.",
+   "situation": "Your idea is different: it uses automation that didn't exist then.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Explain the difference",
+     "patterns": [
+      "\\b(differen|now|automat|new|since then|this time|unlike)\\b"
+     ],
+     "tip": "Say what's different this time."
+    },
+    "suggestion"
+   ],
+   "topic": [
+    "automat",
+    "tried",
+    "years",
+    "different",
+    "idea",
+    "test",
+    "now",
+    "pilot"
+   ],
+   "question": "What new fact makes the old failure irrelevant?",
+   "models": [
+    "That's good context, thanks. The difference now is automation: what failed manually years ago takes minutes today. Could we try a one-week pilot to see?",
+    "I hear you. This time it's different because the steps are automated. I'd suggest a small test before we decide."
+   ],
+   "tests": {
+    "pass": [
+     "Fair point. What's different now is the automation. Could we pilot it for a week?"
+    ],
+    "fail": [
+     "Whatever, fine."
+    ]
+   }
+  },
+  {
+   "id": "m_co_overpromise",
+   "skill": "correction",
+   "setting": "client",
+   "pressure": 2,
+   "title": "You promised too much",
+   "context": "The client says:",
+   "line": "You said we'd have it last week. What happened?",
+   "situation": "You promised before checking with the team. They needed two more weeks.",
+   "moves": [
+    "accept_point",
+    "ownership",
+    "timeline",
+    {
+     "label": "Prevent it next time",
+     "patterns": [
+      "\\b(going forward|next time|from now on|to avoid|to prevent|double[- ]?check|checklist|won't happen|in future|in the future|alert|test for)\\b"
+     ],
+     "tip": "Say what you'll change."
+    }
+   ],
+   "topic": [
+    "week",
+    "promise",
+    "team",
+    "date",
+    "deliver",
+    "friday",
+    "check",
+    "estimate"
+   ],
+   "question": "Own the promise, give a real date, and say what changes.",
+   "models": [
+    "You're right, I gave you that date before checking with the team, and that was my mistake. The realistic date is Friday the 20th. From now on, I'll confirm estimates before sharing them.",
+    "That's on me: I promised too early. We'll deliver by the 20th, and going forward I'll only share dates the team has confirmed."
+   ],
+   "tests": {
+    "pass": [
+     "You're right, I promised before checking. It will be ready by the 20th, and next time I'll confirm first."
+    ],
+    "fail": [
+     "The team was slow, not my fault."
+    ]
+   }
+  },
+  {
+   "id": "m_co_security_slip",
+   "skill": "correction",
+   "setting": "1:1",
+   "pressure": 3,
+   "title": "You shared something you shouldn't have",
+   "context": "Your manager says:",
+   "line": "You posted the API key in the public channel.",
+   "situation": "True. You did it by mistake an hour ago.",
+   "moves": [
+    "accept_point",
+    "ownership",
+    "timeline",
+    {
+     "label": "Prevent it next time",
+     "patterns": [
+      "\\b(going forward|next time|from now on|to avoid|to prevent|double[- ]?check|checklist|won't happen|in future|in the future|alert|test for)\\b"
+     ],
+     "tip": "Say what you'll change."
+    }
+   ],
+   "topic": [
+    "key",
+    "api",
+    "channel",
+    "rotate",
+    "delete",
+    "security",
+    "revoke",
+    "posted"
+   ],
+   "question": "In a security slip, what matters most in the first minute?",
+   "models": [
+    "You're right, that was my mistake. I'll delete the message and rotate the key right now, within 10 minutes. Going forward I'll keep keys only in the secrets manager.",
+    "My mistake. I'm revoking that key now and will confirm in 15 minutes. To prevent it, I'll add a check that blocks keys in chat."
+   ],
+   "tests": {
+    "pass": [
+     "My mistake. I'll delete the post and rotate the key now, and from now on I'll use the secrets manager."
+    ],
+    "fail": [
+     "Sorry, nobody saw it anyway."
+    ]
+   },
+   "hard": true,
+   "allow": [
+    "sorry"
+   ]
+  },
+  {
+   "id": "m_co_partial_blame",
+   "skill": "correction",
+   "setting": "meeting",
+   "pressure": 2,
+   "title": "Partly your fault",
+   "context": "Your manager says:",
+   "line": "The report was late because of your section.",
+   "situation": "Your section was late by one day; another section was late by three days.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Own your part precisely",
+     "patterns": [
+      "\\b(my (section|part)|i was|i'm responsible|one day|my delay)\\b"
+     ],
+     "tip": "Own exactly your part."
+    },
+    "suggestion"
+   ],
+   "topic": [
+    "report",
+    "section",
+    "day",
+    "late",
+    "part",
+    "deadline",
+    "plan",
+    "next"
+   ],
+   "question": "Can you own your part without taking the whole blame or blaming others?",
+   "models": [
+    "You're right that my section was a day late, and I own that. Other parts also slipped, so could we set earlier internal deadlines for every section next time?",
+    "I understand. My part was one day late, and I'll make sure it isn't next time. I'd suggest a shared checklist so we see delays early."
+   ],
+   "tests": {
+    "pass": [
+     "My section was a day late, which is on me. Could we add internal deadlines for all sections next time?"
+    ],
+    "fail": [
+     "Not my fault, the others were later."
+    ]
+   }
+  },
+  {
+   "id": "m_idk_standup_estimate",
+   "skill": "idk",
+   "setting": "standup",
+   "pressure": 2,
+   "title": "Asked for an estimate too early",
+   "context": "Your lead asks:",
+   "line": "How long will the migration take?",
+   "situation": "You haven't looked at the old system yet.",
+   "moves": [
+    "admit_gap",
+    "ownership",
+    "timeline"
+   ],
+   "topic": [
+    "migration",
+    "estimate",
+    "system",
+    "look",
+    "days",
+    "week",
+    "old"
+   ],
+   "question": "A guess now, or a real number tomorrow: which helps your lead more?",
+   "models": [
+    "I don't know yet, because I haven't looked at the old system. Let me spend today on it and give you an estimate tomorrow morning.",
+    "I'd need to check the old system first. I'll have a rough estimate by end of day."
+   ],
+   "tests": {
+    "pass": [
+     "I'm not sure yet. I'll review the old system and share an estimate tomorrow."
+    ],
+    "fail": [
+     "Two days, probably."
+    ]
+   }
+  },
+  {
+   "id": "m_idk_wrong_person",
+   "skill": "idk",
+   "setting": "1:1",
+   "pressure": 1,
+   "title": "Not your area",
+   "context": "Someone from sales asks you:",
+   "line": "Why was this customer charged twice?",
+   "situation": "You work on search, not billing. You know who handles billing.",
+   "moves": [
+    "admit_gap",
+    "ownership"
+   ],
+   "topic": [
+    "billing",
+    "charged",
+    "twice",
+    "customer",
+    "team",
+    "connect",
+    "priya",
+    "search"
+   ],
+   "question": "How can you help even when it isn't your area?",
+   "models": [
+    "I'm not sure, because billing isn't my area. Let me connect you with Priya from billing; I'll message her now.",
+    "I don't know the billing system well. I'll introduce you to the billing team in our chat right away."
+   ],
+   "tests": {
+    "pass": [
+     "I don't know billing well, but I'll connect you with the billing team now."
+    ],
+    "fail": [
+     "Not my job."
+    ]
+   }
+  },
+  {
+   "id": "m_to_out_of_office",
+   "skill": "tone",
+   "setting": "email",
+   "pressure": 1,
+   "title": "Out-of-office message",
+   "context": "Write your out-of-office reply:",
+   "line": "(You're away 3–7 June. Urgent things go to Asha.)",
+   "situation": "Short, clear, professional.",
+   "moves": [
+    {
+     "label": "Dates",
+     "patterns": [
+      "\\d"
+     ],
+     "tip": "Give the dates."
+    },
+    {
+     "label": "Who to contact",
+     "patterns": [
+      "\\b(contact|reach|asha|email)\\b"
+     ],
+     "tip": "Say who handles urgent things."
+    }
+   ],
+   "topic": [
+    "june",
+    "away",
+    "office",
+    "asha",
+    "urgent",
+    "contact",
+    "back",
+    "leave"
+   ],
+   "question": "What does the sender need to know in five seconds?",
+   "models": [
+    "Thanks for your email. I'm away from 3 to 7 June. For anything urgent, please contact Asha at asha@company.com.",
+    "I'm out of office 3–7 June and will reply when I'm back. For urgent matters, please email Asha."
+   ],
+   "tests": {
+    "pass": [
+     "I'm away 3 to 7 June. For urgent issues, please contact Asha."
+    ],
+    "fail": [
+     "Myself out of station, kindly revert after."
+    ]
+   },
+   "written": true
+  },
+  {
+   "id": "m_to_meeting_request",
+   "skill": "tone",
+   "setting": "email",
+   "pressure": 2,
+   "title": "Requesting a meeting with a director",
+   "context": "Write a short message to a director, Mr. Mehta:",
+   "line": "(You want 20 minutes to propose a cost-saving idea.)",
+   "situation": "Respectful, not subservient. Make it easy to say yes.",
+   "moves": [
+    {
+     "label": "Clear ask",
+     "patterns": [
+      "\\b(could|can|would) you\\b",
+      "\\bplease\\b",
+      "\\b(could|can|may) (i|we)\\b[^?.!]*\\?"
+     ],
+     "tip": "Put the ask in the first line."
+    },
+    "reason",
+    {
+     "label": "Make it easy",
+     "patterns": [
+      "\\b\\d+\\s*min",
+      "\\b(this week|next week|any time|your calendar|slot)\\b"
+     ],
+     "tip": "Say how long and when."
+    }
+   ],
+   "topic": [
+    "minutes",
+    "meeting",
+    "cost",
+    "saving",
+    "idea",
+    "week",
+    "propose"
+   ],
+   "question": "Why should a busy director give you 20 minutes?",
+   "models": [
+    "Hi Mr. Mehta, could I have 20 minutes this week to share a cost-saving idea? It could reduce our cloud bill by about 15%. I'm happy to fit your calendar.",
+    "Dear Mr. Mehta, I'd like to propose an idea that could save around 10 lakhs a year. Would you have 20 minutes next week? I can send a one-page summary before."
+   ],
+   "tests": {
+    "pass": [
+     "Hi Mr. Mehta, could we meet for 20 minutes this week? I have an idea that could cut costs by 15%."
+    ],
+    "fail": [
+     "Respected sir, sorry to disturb, I humbly request some of your precious time."
+    ]
+   },
+   "written": true
+  },
+  {
+   "id": "m_to_appraisal_selfreview",
+   "skill": "tone",
+   "setting": "appraisal",
+   "pressure": 2,
+   "title": "Your self-review summary",
+   "context": "Your manager asks in your appraisal:",
+   "line": "How would you summarise your year?",
+   "situation": "You shipped the payments feature, mentored two juniors, and missed one deadline in Q2.",
+   "moves": [
+    {
+     "label": "Concrete achievement",
+     "patterns": [
+      "\\d",
+      "\\b(delivered|shipped|led|built|reduced|improved|saved|launched|fixed|automated)\\b"
+     ],
+     "tip": "Name a result with a number."
+    },
+    {
+     "label": "Honest about the miss",
+     "patterns": [
+      "\\b(missed|delay|late|could have|improve|learned|lesson)\\b"
+     ],
+     "tip": "Mention the weak spot and what you learned."
+    }
+   ],
+   "topic": [
+    "payment",
+    "mentor",
+    "junior",
+    "deadline",
+    "q2",
+    "year",
+    "shipped",
+    "feature",
+    "learned"
+   ],
+   "question": "Confident without bragging, honest without shrinking: can you do both?",
+   "models": [
+    "Three highlights: I shipped the payments feature, which now handles 40% of orders, and I mentored two juniors. One miss: a Q2 deadline, and I learned to flag risks earlier.",
+    "I'd say a strong year. I delivered payments on time and helped two new joiners get productive. I missed one deadline in Q2; since then I share weekly risk updates."
+   ],
+   "tests": {
+    "pass": [
+     "I shipped payments and mentored two juniors. I missed one Q2 deadline and learned to raise risks earlier."
+    ],
+    "fail": [
+     "I did my best, I worked very very hard, I think it was okay maybe."
+    ]
+   }
+  },
+  {
+   "id": "m_to_reply_compliment",
+   "skill": "tone",
+   "setting": "meeting",
+   "pressure": 1,
+   "title": "Receiving praise",
+   "context": "Your director says in front of the team:",
+   "line": "Great work on the launch, really impressive.",
+   "situation": "Many people helped. You want to accept the praise without shrinking or showing off.",
+   "moves": [
+    "acknowledge",
+    {
+     "label": "Share credit",
+     "patterns": [
+      "\\b(team|together|everyone|thanks to|helped|support)\\b"
+     ],
+     "tip": "Name who else helped."
+    }
+   ],
+   "topic": [
+    "launch",
+    "team",
+    "thanks",
+    "work",
+    "together",
+    "helped"
+   ],
+   "question": "Do you need to say 'it was nothing'? What does that do?",
+   "models": [
+    "Thank you, I appreciate that. It was a real team effort, especially Asha on testing.",
+    "Thanks a lot. I'm proud of it, and the whole team worked hard to make the launch smooth."
+   ],
+   "tests": {
+    "pass": [
+     "Thank you! The team worked really well together on it."
+    ],
+    "fail": [
+     "No no, it was nothing, I'm just a small person, sorry."
+    ]
+   }
+  },
+  {
+   "id": "m_hold_deadline_from_client",
+   "skill": "hold",
+   "setting": "client",
+   "pressure": 3,
+   "title": "Client moves the deadline earlier",
+   "context": "The client says on a call:",
+   "line": "We need it two weeks earlier. Make it happen.",
+   "situation": "That would mean skipping testing. You can deliver a smaller version earlier.",
+   "moves": [
+    "acknowledge",
+    "view",
+    "options"
+   ],
+   "topic": [
+    "week",
+    "earlier",
+    "deadline",
+    "test",
+    "version",
+    "smaller",
+    "deliver",
+    "date",
+    "feature"
+   ],
+   "question": "What can you offer instead of a flat yes or no?",
+   "models": [
+    "I understand the new date matters to you. Two weeks earlier would mean skipping testing, which I don't think is safe. Could we either deliver the core features two weeks early, or keep the full version on the original date?",
+    "I hear you. My concern is quality if we cut testing. One option is a smaller first version on your new date; the other is everything on the original date."
+   ],
+   "tests": {
+    "pass": [
+     "I understand. I don't think we can safely deliver everything earlier. Could we ship the core features early and the rest on the original date?"
+    ],
+    "fail": [
+     "Okay, we'll make it happen."
+    ]
+   },
+   "hard": true
   }
  ],
  "surgery": [
@@ -2787,5 +6338,14 @@
     }
    ]
   }
- ]
+ ],
+ "settings": {
+  "meeting": "Meetings",
+  "1:1": "Manager 1:1",
+  "client": "Client calls",
+  "interview": "Interviews",
+  "standup": "Stand-ups",
+  "appraisal": "Appraisal & salary",
+  "email": "Emails & chat"
+ }
 }

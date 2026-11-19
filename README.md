@@ -21,11 +21,13 @@ what weakens a reply: your own or someone else's.
 |---|---|
 | Today | A daily plan: due reviews, a new scenario from your weakest skill, a comparison and a fix-it sentence. |
 | Learn | Compare answers, explain *why* one is better, then unlock the pattern. Also the research library. |
-| Practice | Real workplace situations. Write what you'd say; get feedback and a guiding question. Optional 60-second pressure mode. |
+| Practice | **103 workplace situations** across 7 skills and 7 settings (meetings, manager 1:1s, client calls, interviews, stand-ups, appraisal & salary, emails). Filter by setting and pressure (friendly / neutral / hostile). Optional 60-second pressure mode. |
+| Talk | Branching role-plays: the other person reacts to what you say. |
+| Diagnose | Spot what someone else is doing wrong, then fix their reply. |
 | Fix | Rewrite weak sentences into confident ones. |
 | Log | After a real conversation: what you said → feedback → what you'll say next time. |
 | Check | Paste any message before you send it. |
-| Journal | All your attempts. |
+| Journal | All your attempts, your feedback reports, backup export/import, and text size. |
 
 ## Development
 
@@ -44,8 +46,22 @@ npm run serve     # http://localhost:8080
 
 ### Adding a scenario
 
-Add an object to `scenarios` in `web/data/content.json` with `topic` words, required `moves`,
-two `models`, and `tests.pass` / `tests.fail` examples. Then run `npm test`.
+Write it in `tools/scenarios_more.py` (compact Python with readable regexes), then:
+
+```bash
+npm run build:scenarios                 # merges into web/data/content.json
+npm run try -- m_to_leave "Hi Rahul, could I take leave on 12-14 March?"   # see the feedback for one answer
+npm test                                # every model/pass answer must pass; every fail answer must fail
+```
+
+Each scenario needs specific `topic` words (the off-topic check uses them), two `models`, at least one more
+`tests.pass` answer and at least one `tests.fail` answer. Every scenario-specific rule (`forbid`) must name a
+mistake type (`habit`) so Diagnose mode can explain it.
+
+### Wrong feedback?
+
+Tap **"This feedback is wrong"** under any feedback. The report is saved on your device (Journal → Feedback reports)
+and can open a pre-filled GitHub issue. Each fixed report should become a new test answer.
 
 Deploys to GitHub Pages automatically when `main` changes (Settings → Pages → Source: GitHub Actions).
 

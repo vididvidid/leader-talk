@@ -18,6 +18,8 @@ const pressureTag = p => `<span class="tag p${p || 2}">${PRESSURE[p || 2]}</span
 const SKILL = id => C.skills.find(s => s.id === id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const save = () => saveState(S);
+export const APP_VERSION = "1.4.0";
+const REPO = "https://github.com/vididvidid/leader-talk";
 
 function speak(text) {
   if (!("speechSynthesis" in window)) return alert("This browser has no built-in voice.");
@@ -70,7 +72,40 @@ function feedbackHTML(text, r, { hideTips = false, extra = {} } = {}) {
   h += `</ul>`;
   if (r.bonus.length) h += `<p class="small muted">Also good: ${r.bonus.map(b => esc(b.label)).join(" · ")}</p>`;
   if (r.lengthNote) h += `<p class="small">📏 ${esc(r.lengthNote)}</p>`;
+  const id = "rep" + Math.random().toString(36).slice(2, 8);
+  REPORT_CTX[id] = { text, score: r.score, issues: r.issues.map(i => i.id + ":" + i.hit), missing: r.missing.map(m => m.label), ref: extra.ref || CURRENT_REF };
+  h += `<div class="report-row"><button class="linkish" data-report="${id}">This feedback is wrong</button></div>`;
   return h;
+}
+const REPORT_CTX = {};
+let CURRENT_REF = "";
+
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-report]");
+  if (!b) return;
+  const ctx = REPORT_CTX[b.dataset.report];
+  const box = document.createElement("div");
+  box.className = "report-box";
+  box.innerHTML = `<label>What's wrong with this feedback? (e.g. "my reply did acknowledge them", "this phrase is correct English")</label>
+    <textarea class="rep-note" rows="3"></textarea>
+    <div class="row"><button class="btn rep-save">Save report</button><button class="btn ghost rep-gh">Save + open GitHub issue</button></div>
+    <p class="small muted">Saved on this device under Journal → Feedback reports. GitHub opens a pre-filled issue that you can check before submitting.</p>`;
+  b.replaceWith(box);
+  const saveIt = async () => {
+    const report = { ts: Date.now(), ...ctx, note: $(".rep-note", box).value.trim(), version: APP_VERSION };
+    (S.reports ||= []).push(report);
+    await save();
+    return report;
+  };
+  $(".rep-save", box).onclick = async () => { await saveIt(); box.innerHTML = `<p class="small">✓ Saved. Thank you: reports like this are how the rules get better.</p>`; };
+  $(".rep-gh", box).onclick = async () => {
+    const r = await saveIt();
+    window.open(`${REPO}/issues/new?title=${encodeURIComponent("Feedback is wrong: " + (r.ref || "free check"))}&body=${encodeURIComponent(reportText(r))}`, "_blank", "noopener");
+    box.innerHTML = `<p class="small">✓ Saved, and GitHub opened in a new tab.</p>`;
+  };
+});
+function reportText(r) {
+  return `**Where:** ${r.ref || "free check"}\n**App version:** ${r.version}\n**My text:** ${r.text}\n**Score:** ${r.score}\n**Issues flagged:** ${r.issues.join(", ") || "none"}\n**Missing moves:** ${r.missing.join(", ") || "none"}\n**What's wrong:** ${r.note || "(no note)"}\n`;
 }
 
 function patternHTML(p) {
@@ -136,17 +171,20 @@ const views = {
     };
   },
 
-  practice(filter = 0) {
+  practice(filter = 0, setting = "") {
     app.innerHTML = `<h1>Practice</h1>
       <p class="muted">Write exactly what you would <b>say</b>. You get feedback and a guiding question. Model answers unlock after your second try (or once you pass).</p>
-      <div class="row" role="group" aria-label="Pressure">${[0, 1, 2, 3].map(p => `<button class="chip ${p === filter ? "on" : ""}" data-p="${p}">${p ? PRESSURE[p] : "All"}</button>`).join("")}</div>
-      ${C.skills.map(s => `<div class="card list"><h3>${esc(s.name)}</h3>${C.scenarios.filter(x => x.skill === s.id && (!filter || (x.pressure || 2) === filter)).map(x => {
+      <p class="small muted">${C.scenarios.length} situations.</p>
+      <div class="row" role="group" aria-label="Pressure">${[0, 1, 2, 3].map(p => `<button class="chip ${p === filter ? "on" : ""}" data-p="${p}" aria-pressed="${p === filter}">${p ? PRESSURE[p] : "Any pressure"}</button>`).join("")}</div>
+      <div class="row" role="group" aria-label="Setting" style="margin-top:6px"><button class="chip ${!setting ? "on" : ""}" data-set="" aria-pressed="${!setting}">Any setting</button>${Object.entries(C.settings || {}).map(([k, v]) => `<button class="chip ${k === setting ? "on" : ""}" data-set="${esc(k)}" aria-pressed="${k === setting}">${esc(v)}</button>`).join("")}</div>
+      ${C.skills.map(s => `<div class="card list"><h3>${esc(s.name)}</h3>${C.scenarios.filter(x => x.skill === s.id && (!filter || (x.pressure || 2) === filter) && (!setting || x.setting === setting)).map(x => {
         const st = S.scenarios[x.id];
         const badge = st ? (st.firstTryPass ? "✓ first try" : st.passes ? "✓ passed" : `best ${st.best}`) : "new";
-        return `<div class="item"><div><b>${esc(x.title)}</b> ${x.hard ? '<span class="tag hard">hard</span>' : ""}<div class="small muted">${pressureTag(x.pressure)} ${badge}</div></div><button class="btn ghost" data-s="${x.id}">Open</button></div>`;
+        return `<div class="item"><div><b>${esc(x.title)}</b> ${x.hard ? '<span class="tag hard">hard</span>' : ""}<div class="small muted">${pressureTag(x.pressure)} ${x.setting && C.settings ? `<span class="tag">${esc(C.settings[x.setting])}</span>` : ""} ${badge}</div></div><button class="btn ghost" data-s="${x.id}">Open</button></div>`;
       }).join("") || '<p class="small muted">None at this pressure level.</p>'}</div>`).join("")}`;
     $$("[data-s]").forEach(b => b.onclick = () => runScenario(b.dataset.s));
-    $$("[data-p]").forEach(b => b.onclick = () => views.practice(+b.dataset.p));
+    $$("[data-p]").forEach(b => b.onclick = () => views.practice(+b.dataset.p, setting));
+    $$("[data-set]").forEach(b => b.onclick = () => views.practice(filter, b.dataset.set));
   },
 
   talk() {
@@ -220,14 +258,43 @@ const views = {
     const at = [...S.attempts].reverse().slice(0, 300);
     app.innerHTML = `<h1>Journal</h1><p class="muted">Every attempt, newest first.</p>
       ${at.length ? `<div class="card list">${at.map(a => `<div class="item"><div><div class="small muted">${new Date(a.ts).toLocaleString()} · ${esc(a.title)} · try ${a.try}${a.timed ? " · ⏱" : ""}</div>${esc(a.text)}</div><b>${a.score}</b></div>`).join("")}</div>` : '<p class="muted">Nothing yet.</p>'}
-      <div class="card"><h3>Start over</h3><p class="small muted">Deletes all progress on this device.</p><button class="btn ghost danger" id="reset">Reset progress</button></div>`;
-    $("#reset").onclick = async () => { if (confirm("Delete ALL progress on this device? This cannot be undone.")) { S = P.emptyState(); await save(); show("home"); } };
+      <div class="card"><h3>Feedback reports</h3>${(S.reports || []).length ? `<ol class="small">${[...S.reports].reverse().map(r => `<li>${new Date(r.ts).toLocaleDateString()} · ${esc(r.ref || "free check")}: “${esc(r.text.slice(0, 80))}” · ${esc(r.note || "")}</li>`).join("")}</ol>
+        <button class="btn ghost" id="copyrep">Copy all reports</button>` : '<p class="small muted">None yet. Use "This feedback is wrong" under any feedback.</p>'}</div>
+      <div class="card"><h3>Your data</h3><p class="small muted">Everything is stored only on this device. Export a backup file to keep it safe or move to a new phone.</p>
+        <div class="row"><button class="btn" id="export">Export backup</button><label class="btn ghost file-btn">Import backup<input type="file" id="import" accept="application/json,.json" hidden></label></div>
+        <p class="small" id="datamsg" aria-live="polite"></p>
+        <h3>Start over</h3><p class="small muted">Deletes all progress on this device.</p><button class="btn ghost danger" id="reset">Reset progress</button></div>
+      <div class="card"><h3>Text size</h3><div class="row" role="group" aria-label="Text size">${[["Small", 15], ["Normal", 16], ["Large", 18], ["Extra large", 20]].map(([n, px]) => `<button class="chip ${fontSize() === px ? "on" : ""}" data-fs="${px}" aria-pressed="${fontSize() === px}">${n}</button>`).join("")}</div>
+        <p class="small muted">Leader Talk ${APP_VERSION} · <a href="${REPO}" target="_blank" rel="noopener">source code</a></p></div>`;
+    $("#reset").onclick = async () => { if (confirm("Delete ALL progress on this device? This cannot be undone. (Tip: export a backup first.)")) { S = P.emptyState(); await save(); show("home"); } };
+    $("#export").onclick = () => {
+      const blob = new Blob([JSON.stringify({ app: "leader-talk", exported: new Date().toISOString(), version: APP_VERSION, state: S }, null, 1)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob); a.download = `leader-talk-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      $("#datamsg").textContent = "✓ Backup downloaded.";
+    };
+    $("#import").onchange = async e => {
+      const f = e.target.files[0]; if (!f) return;
+      try {
+        const parsed = P.parseBackup(await f.text());
+        if (!confirm(`Replace your current progress with this backup (${parsed.attempts.length} attempts)?`)) return;
+        S = parsed; await save();
+        $("#datamsg").textContent = "✓ Backup restored."; show("home");
+      } catch (err) { $("#datamsg").textContent = "✗ " + err.message; }
+    };
+    if ($("#copyrep")) $("#copyrep").onclick = async () => {
+      try { await navigator.clipboard.writeText(S.reports.map(reportText).join("\n---\n")); $("#copyrep").textContent = "✓ Copied"; }
+      catch { alert("Couldn't copy. Your browser blocked clipboard access."); }
+    };
+    $$("[data-fs]").forEach(b => b.onclick = () => { setFontSize(+b.dataset.fs); views.journal(); });
   },
 };
 
 // ------------------------------------------------------------------ runners
 function runScenario(id) {
   const s = C.scenarios.find(x => x.id === id);
+  CURRENT_REF = "scenario " + id;
   let tryNo = 1, timer = null, left = 0, revealed = false;
   app.innerHTML = `<button class="btn ghost" id="back">← Practice</button>
     <div class="card">
@@ -321,6 +388,7 @@ function runQuizSkill(skill) {
 
 function runSurgery(id) {
   const x = C.surgery.find(s => s.id === id);
+  CURRENT_REF = "surgery " + id;
   app.innerHTML = `<button class="btn ghost" id="back">← Fix</button>
     <div class="card">${x.mine ? '<span class="tag mine">your own sentence</span>' : ""}<span class="tag">${esc(SKILL(x.skill).name)}</span>
       <p class="muted">${esc(x.context)}</p><div class="quote">“${esc(x.weak)}”</div>
@@ -350,6 +418,7 @@ function habitCard() {
 
 function runRoleplay(id) {
   const rp = C.roleplays.find(r => r.id === id);
+  CURRENT_REF = "role-play " + id;
   let nodeId = rp.start;
   const turns = [];
   app.innerHTML = `<button class="btn ghost" id="back">← Role-plays</button>
@@ -420,8 +489,21 @@ function runDiagnose() {
   };
 }
 
+function fontSize() { try { return +localStorage.getItem("lt-font") || 16; } catch { return 16; } }
+function setFontSize(px) { try { localStorage.setItem("lt-font", px); } catch { /* ignore */ } document.documentElement.style.fontSize = px + "px"; }
+document.documentElement.style.fontSize = fontSize() + "px";
+
+// Ctrl/Cmd+Enter submits the nearest form button
+document.addEventListener("keydown", e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && e.target.matches("textarea")) {
+    const btn = e.target.closest(".card, .composer")?.querySelector("#check, #send, #frb, #rl-save, #fixc");
+    if (btn) { e.preventDefault(); btn.click(); }
+  }
+});
+
 // ------------------------------------------------------------------ nav + boot
 function show(v) {
+  CURRENT_REF = { free: "free check", real: "real-life log", diagnose: "diagnose" }[v] || "";
   $$("#nav button").forEach(b => { const on = b.dataset.view === v; b.classList.toggle("active", on); b.setAttribute("aria-current", on ? "page" : "false"); });
   window.scrollTo(0, 0);
   views[v]();

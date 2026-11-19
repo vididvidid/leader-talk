@@ -19,3 +19,4 @@ escalate escalated escalation escalations prioritise prioritised prioritising pr
 sync syncs synced syncing async walkthrough walkthroughs checklist checklists signoff touchpoint touchpoints followup
 typo typos screenshot screenshots screencast spreadsheet spreadsheets excel powerpoint slide slides deck decks
 integrations onboard onboarded realtime offline online upload uploads uploaded download downloads downloaded
+joiner joiners fresher freshers onsite offshore timesheet timesheets walkin standup kickoff
