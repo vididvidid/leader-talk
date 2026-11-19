@@ -1,6 +1,6 @@
 __pycache__/
 *.pyc
-data/
+/data/
 node_modules/
 tools/cache/
 .DS_Store
