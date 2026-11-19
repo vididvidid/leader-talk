@@ -48,3 +48,10 @@ test("quizzes have exactly one correct option with explanations", () => {
 test("every built-in move cites a known principle", () => {
   for (const [id, mv] of Object.entries(MOVES)) assert.ok(PRINCIPLES[mv.principle], id);
 });
+test("every scenario-specific rule names a mistake type (so Diagnose can explain it)", async () => {
+  const { HABITS } = await import("../web/js/habits.js");
+  const ids = new Set(HABITS.map(h => h.id));
+  const all = [...content.scenarios, ...content.surgery].flatMap(s => s.forbid || [])
+    .concat((content.roleplays || []).flatMap(r => Object.values(r.nodes).flatMap(n => n.spec?.forbid || [])));
+  for (const f of all) assert.ok(ids.has(f.habit), `forbid "${f.message}" needs a valid habit`);
+});
