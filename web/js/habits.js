@@ -11,7 +11,7 @@ export const HABITS = [
     hint: "Says yes or \"makes sense\" without understanding." },
   { id: "dismissive", name: "Dismissive / judgemental", issues: ["calm_down", "as_i_said", "judgement", "casual"],
     hint: "\"Calm down\", \"obviously\", \"that's a stupid idea\", too casual." },
-  { id: "buried", name: "Buries or blurs the point", issues: ["vague_opener", "throat_clearing", "pardon_actually", "double_negative"],
+  { id: "buried", name: "Buries or blurs the point", issues: ["vague_opener", "throat_clearing", "pardon_actually", "double_negative", "long_sentence"],
     hint: "Vague opener, filler start, unclear wording." },
   { id: "bluff", name: "Over-claims / bluffs", issues: ["bluff"],
     hint: "\"Definitely\", \"100%\" without evidence." },
@@ -23,9 +23,11 @@ export const HABITS = [
     hint: "Nobody knows what happens next or when." },
   { id: "ignores", name: "Ignores the other person", missing: ["acknowledge", "summarize_back"],
     hint: "Doesn't show they heard the concern." },
-  { id: "phrasing", name: "Outdated or non-standard phrasing", issues: ["needful", "kindly", "revert", "prepone", "doubt", "discuss_about", "explain_me",
+  { id: "phrasing", name: "Outdated or non-standard phrasing", issues: ["needful", "kindly", "revert", "prepone", "doubt", "discuss_about",
       "the_lot", "makes_the_sense", "could_tell", "while_my", "today_morning", "yesterday_night", "cope_up", "return_back", "out_of_station",
-      "myself_name", "sir_overuse", "gentle_reminder"],
+      "myself_name", "sir_overuse", "gentle_reminder", "phrasing_stat", "pw_utilise", "pw_commence", "pw_prior", "pw_in_order",
+      "pw_point_in_time", "pw_due_fact", "pw_event", "pw_regards", "pw_find_attached", "pw_updation", "pw_intimate", "pw_the_same", "pw_earliest",
+      "pw_passed_out", "pw_urgent_basis", "pw_humbly", "pw_having_q", "pw_good_name", "reply_you", "married_with", "senior_than", "good_in"],
     hint: "\"Kindly do the needful\", \"revert\", \"I have a doubt\"." },
 ];
 const BY_ISSUE = {};

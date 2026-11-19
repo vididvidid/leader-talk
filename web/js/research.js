@@ -76,6 +76,16 @@ export const PRINCIPLES = {
     source: "Usage note. These forms are widely understood in India, but they confuse or sound odd to international colleagues.",
     idea: "Global professional English favours short, plain, standard forms. Small slips make listeners notice your English instead of your point.",
   },
+  ngram: {
+    name: "Phrasing that standard English uses",
+    source: "Counting method: Bergsma, Lin & Goebel (2009), \"Web-scale N-gram models for lexical disambiguation\" (IJCAI). Counts from WikiText-103 (Merity et al., 2016; about 83 million words of Wikipedia text after cleaning, CC BY-SA).",
+    idea: "For words people often mix up (a/the, in/on/at, about, back, up...), the app compares how often each version appears with the same neighbouring words. If the alternative is far more common, your version probably sounds unusual. This is counting, not AI.",
+  },
+  spelling: {
+    name: "Spelling",
+    source: "P. Norvig (2007), \"How to Write a Spelling Corrector\" (edit-distance method), with a frequency-ranked dictionary.",
+    idea: "Small typos make readers notice the English instead of your point. The app suggests the most common real word that is one or two letter changes away.",
+  },
   plain_language: {
     name: "Plain language",
     source: "R. Flesch (1948), \"A new readability yardstick\", Journal of Applied Psychology.",

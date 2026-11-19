@@ -222,7 +222,6 @@ export const ISSUES = [
   ["doubt", "grammar", String.raw`\b(i have|i'm having|i am having|small|one|a) doubts?\b|\bmy doubt\b`,
     "In global English, \"doubt\" means suspicion that something is untrue.", "Say \"I have a question\".", "usage"],
   ["discuss_about", "grammar", String.raw`\bdiscuss about\b`, "\"Discuss\" takes no \"about\".", "\"discuss the plan\"", "usage"],
-  ["explain_me", "grammar", String.raw`\bexplain me\b`, "Missing \"to\".", "\"explain to me\" / \"could you explain...\"", "usage"],
   ["the_lot", "grammar", String.raw`\bthe lot of\b`, "Wrong article.", "\"a lot of\"", "usage"],
   ["makes_the_sense", "grammar", String.raw`\bmakes the sense\b`, "No article needed.", "\"makes sense\"", "usage"],
   ["could_tell", "grammar", String.raw`\bcould tell me\b`, "Missing \"you\".", "\"could you tell me\"", "usage"],
@@ -243,6 +242,32 @@ export const ISSUES = [
   ["double_dots", "grammar", String.raw`\.\.(?!\.)`, "\"..\" is not punctuation.", "End sentences with one full stop.", "usage"],
   ["sorry_disturb", "grammar", String.raw`\bsorry (to|for) (disturb|bother)`, "Apologising for existing.",
     "\"Hi Priya, do you have five minutes today?\"", "powerless"],
+  // plain words (hand-made swaps; plain-language guidance)
+  ["pw_utilise", "grammar", String.raw`\butili[sz](e|ed|es|ing)\b`, "\"Utilise\" is a long word for \"use\".", "use", "plain_language"],
+  ["pw_commence", "grammar", String.raw`\bcommenc(e|ed|es|ing)\b`, "\"Commence\" sounds stiff.", "start / begin", "plain_language"],
+  ["pw_prior", "grammar", String.raw`\bprior to\b`, "Formal and longer than needed.", "before", "plain_language"],
+  ["pw_in_order", "grammar", String.raw`\bin order to\b`, "\"In order\" adds nothing.", "to", "plain_language"],
+  ["pw_point_in_time", "grammar", String.raw`\bat this (point|moment) in time\b`, "Wordy.", "now", "plain_language"],
+  ["pw_due_fact", "grammar", String.raw`\bdue to the fact that\b`, "Wordy.", "because", "plain_language"],
+  ["pw_event", "grammar", String.raw`\bin the event that\b`, "Wordy.", "if", "plain_language"],
+  ["pw_regards", "grammar", String.raw`\bwith regards? to\b`, "Stiff in conversation.", "about", "plain_language"],
+  ["pw_find_attached", "grammar", String.raw`\bplease find (the )?attached\b`, "Old-fashioned email phrase.", "\"I've attached...\"", "register"],
+  ["pw_updation", "grammar", String.raw`\bupdation\b`, "\"Updation\" isn't standard English.", "update", "usage"],
+  ["pw_intimate", "grammar", String.raw`\bintimate (you|me|him|her|them|us|the)\b`, "\"Intimate\" means very personal or sexual in global English.", "inform / let you know", "usage"],
+  ["pw_the_same", "grammar", String.raw`\b(check|send|share|review|do|update|confirm|find|attach|forward) the same\b`, "\"The same\" as a pronoun sounds like legal text.", "it / them", "usage"],
+  ["pw_earliest", "grammar", String.raw`\b(at|by) the earliest\b`, "Vague and stiff.", "\"by Thursday\" (a real date) or \"as soon as you can\"", "register"],
+  ["pw_passed_out", "grammar", String.raw`\bpassed out (of|from)\b`, "\"Passed out\" means fainted in global English.", "graduated from", "usage"],
+  ["pw_urgent_basis", "grammar", String.raw`\bon (an )?urgent basis\b`, "Wordy.", "urgently / today", "plain_language"],
+  ["pw_humbly", "grammar", String.raw`\bhumbly (request|ask|submit)\b`, "Sounds subservient.", "\"I'd like to ask...\"", "register"],
+  ["pw_having_q", "grammar", String.raw`\bi'm having (a|an|one|some) (question|query|issue|problem)\b`, "\"Have\" is a state here, not an action.", "\"I have a question\"", "usage"],
+  ["reply_you", "grammar", String.raw`\b(reply|listen|explain|talk|write|apologi[sz]e) (you|me|him|her|them|us)\b`, "This verb needs \"to\" before the person.", "\"reply to you\" / \"listen to me\" / \"explain to me\"", "usage"],
+  ["married_with", "grammar", String.raw`\bmarried with\b`, "In standard English you're married TO someone.", "\"married to\"", "usage"],
+  ["senior_than", "grammar", String.raw`\b(senior|junior|superior|inferior|prefer\w*) than\b`, "These words take \"to\", not \"than\".", "\"senior to me\" / \"prefer X to Y\"", "usage"],
+  ["good_in", "grammar", String.raw`\bgood in (python|java|sql|english|maths?|coding|programming|excel|communication|design)\b`, "Skills take \"good at\".", "\"good at Python\"", "usage"],
+  ["pw_good_name", "grammar", String.raw`\bgood name\b`, "Indian-only phrase.", "\"What's your name?\"", "usage"],
+  ["long_sentence", "clarity", null, "A very long sentence. Listeners lose the thread after about 20-25 words.", "Split it into two or three sentences.", "plain_language"],
+  ["phrasing_stat", "grammar", null, "", "", "ngram"],
+  ["spelling", "spelling", null, "", "", "spelling"],
   ["gentle_reminder", "grammar", String.raw`\bgentle reminder\b`, "Common but a bit odd (and sounds passive-aggressive).",
     "\"Following up on my message from Monday...\"", "register"],
 ];
@@ -252,8 +277,8 @@ const HEDGES = [String.raw`\bmaybe\b`, String.raw`\bkind of\b`, String.raw`\bsor
   String.raw`\bperhaps\b`, String.raw`\ba (little )?bit\b`, String.raw`\bsomewhat\b`, String.raw`\bmight be\b`, String.raw`\bpossibly\b`];
 const IMPERATIVE_VERBS = String.raw`do|fix|send|stop|give|change|make|check|tell|approve|reply|match|remove|add|move|delay|use|explain|show|listen|wait|cancel|finish|redo`;
 
-export const PENALTY = { weak: 8, tone: 12, clarity: 6, grammar: 2, politeness: 6, relevance: 0 };
-export const CAP = { weak: 30, tone: 30, clarity: 15, grammar: 10, politeness: 12, relevance: 0 };
+export const PENALTY = { weak: 8, tone: 12, clarity: 6, grammar: 2, politeness: 6, relevance: 0, spelling: 1 };
+export const CAP = { weak: 30, tone: 30, clarity: 15, grammar: 10, politeness: 12, relevance: 0, spelling: 4 };
 export const PASS_MARK = 70;
 const OFF_TOPIC_CAP = 40;
 
@@ -315,7 +340,7 @@ function stemHit(tokens, stems) {
  * spec: { moves, forbid, allow, topic, skill, written }
  * returns { score, passed, found, missing, issues, bonus, metrics, lengthNote, offTopic }
  */
-export function analyze(text, spec = {}) {
+export function analyze(text, spec = {}, { stats = null } = {}) {
   const t = normalize(text).trim();
   const allow = new Set(spec.allow || []);
   const toks = words(t);
@@ -386,6 +411,23 @@ export function analyze(text, spec = {}) {
     issues.push({ id: "forbid", kind: f.kind || "weak", hit: m[0].trim(), message: f.message, fix: f.fix || "", principle: f.principle || "gibb", habit: f.habit });
   }
 
+  // long sentences (plain language)
+  const longS = sents.find(s => words(s).length > 25);
+  if (longS) push("long_sentence", longS.split(/\s+/).slice(0, 6).join(" ") + "…");
+
+  // word statistics (optional data; see stats.js)
+  if (stats) {
+    for (const p of stats.phrasing(t)) {
+      if (issues.some(i => i.hit.toLowerCase().includes(p.hit) || p.hit.includes(i.hit.toLowerCase()) && i.hit.length > 3)) continue;
+      push("phrasing_stat", p.hit, {
+        message: `Unusual phrasing. In 83 million words of English, "${p.suggestion}" appears about ${p.evidence.toLocaleString("en")} times; "${p.hit}" appears ${stats.floor - 1} times or fewer.`,
+        fix: `"${p.suggestion}"` });
+    }
+    for (const s of stats.spelling(t).slice(0, 4)) {
+      push("spelling", s.hit, { message: `Possible spelling slip.`, fix: `"${s.suggestion}"` });
+    }
+  }
+
   // relevance (Grice: Relation)
   let offTopic = false;
   if (spec.topic && spec.topic.length && wc > 0 && !stemHit(toks, spec.topic)) {
@@ -419,7 +461,8 @@ export function analyze(text, spec = {}) {
   return {
     score, passed: score >= PASS_MARK, found, missing, bonus: bonus.slice(0, 4), issues, lengthNote, offTopic,
     metrics: { words: wc, sentences: sents.length, powerless, firstSentence: first,
-      avgSentence: sents.length ? Math.round(wc / sents.length) : 0 },
+      avgSentence: sents.length ? Math.round(wc / sents.length) : 0,
+      everyday: stats ? stats.everyday(t) : null },
   };
 }
 

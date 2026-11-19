@@ -1,7 +1,7 @@
 // Offline support: every app file is cached on first visit. Afterwards the app works in airplane mode.
 // Strategy: serve from cache instantly, refresh the cache in the background (stale-while-revalidate),
 // so a new version arrives on the next launch.
-const CACHE = "leadertalk-v2";
+const CACHE = "leadertalk-v3";
 const FILES = [
   "./",
   "index.html",
@@ -15,7 +15,11 @@ const FILES = [
   "js/habits.js",
   "js/roleplay.js",
   "js/diagnose.js",
+  "js/stats.js",
   "data/content.json",
+  "data/ngrams.bin",
+  "data/vocab.txt",
+  "data/ngsl.txt",
   "icons/icon.svg",
   "icons/icon-192.png",
   "icons/icon-512.png",
