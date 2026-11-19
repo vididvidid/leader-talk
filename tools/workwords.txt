@@ -1,0 +1,21 @@
+# Everyday workplace and tech words that are rare in Wikipedia. Added to the spell-check dictionary.
+api apis app apps async backend backends frontend frontends fullstack devops sysadmin config configs repo repos codebase
+caching cache cached caches onboarding offboarding signup signups login logins logout username usernames password passwords
+email emails emailed emailing inbox chat chats chatbot dashboard dashboards analytics roadmap roadmaps backlog backlogs sprint sprints standup standups
+scrum kanban jira slack teams zoom webinar webinars timeline timelines deliverable deliverables stakeholder stakeholders
+kpi kpis okr okrs roi sla slas mvp poc pr prs qa uat sso mfa otp vpn ui ux cta crm erp saas b2b b2c hr eod eta asap fyi
+invoice invoices invoicing invoiced reconcile reconciled reconciling reconciliation gst tds pan aadhaar upi neft rtgs imps
+lakh lakhs crore crores rupee rupees paise
+deploy deploys deployed deploying deployment deployments rollback rollbacks hotfix hotfixes bugfix bugfixes refactor refactored refactoring
+debug debugged debugging debugger runtime runtimes uptime downtime latency throughput bandwidth workflow workflows workload workloads
+retry retries retried retrying timeout timeouts webhook webhooks endpoint endpoints middleware microservice microservices
+kubernetes docker container containers containerised containerized cluster clusters serverless cron json yaml csv xml pdf pdfs
+sql nosql mysql postgres postgresql mongodb redis kafka elasticsearch bcrypt argon hashing hashed encrypt encrypted encryption decrypt
+github gitlab bitbucket git commit commits committed merge merged merging rebase rebased branch branches checkout
+python java javascript typescript golang kotlin swift react angular vue nodejs django flask
+okta aws azure gcp oauth jwt tls ssl https url urls html css
+upskill upskilling reskilling offsite onsite hybrid wfh remote headcount appraisal appraisals payroll reimbursement reimbursements
+escalate escalated escalation escalations prioritise prioritised prioritising prioritization prioritisation deprioritise
+sync syncs synced syncing async walkthrough walkthroughs checklist checklists signoff touchpoint touchpoints followup
+typo typos screenshot screenshots screencast spreadsheet spreadsheets excel powerpoint slide slides deck decks
+integrations onboard onboarded realtime offline online upload uploads uploaded download downloads downloaded

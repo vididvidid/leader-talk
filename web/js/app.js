@@ -5,11 +5,14 @@ import { loadState, saveState, requestPersistence } from "./store.js";
 import { HABITS, habitsOf, habitReport } from "./habits.js";
 import { step as rpStep, specOf as rpSpec } from "./roleplay.js";
 import { buildPool, nextItem } from "./diagnose.js";
+import { loadStats, flesch } from "./stats.js";
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const app = $("#app");
-let C, S, POOL; // content, state, diagnose pool
+let C, S, POOL, STATS = null; // content, state, diagnose pool, word statistics (loaded in the background)
+// every check goes through here so the word statistics are used once they've loaded
+const check = (text, spec = {}) => analyze(text, spec, { stats: STATS });
 const PRESSURE = { 1: "🙂 friendly", 2: "😐 neutral", 3: "😠 hostile / public" };
 const pressureTag = p => `<span class="tag p${p || 2}">${PRESSURE[p || 2]}</span>`;
 const SKILL = id => C.skills.find(s => s.id === id);
@@ -57,7 +60,7 @@ function highlight(text, r) {
 
 function feedbackHTML(text, r, { hideTips = false, extra = {} } = {}) {
   let h = `<div class="score-row"><div><span class="score ${r.passed ? "pass" : "fail"}">${r.score}</span><span class="muted"> / 100 ${r.passed ? "· passed" : "· pass mark is 70"}</span></div>
-    <div class="muted small">${r.metrics.words} words · ${r.metrics.powerless} powerless marker${r.metrics.powerless === 1 ? "" : "s"}</div></div>`;
+    <div class="muted small">${r.metrics.words} words · ${r.metrics.powerless} powerless marker${r.metrics.powerless === 1 ? "" : "s"}${r.metrics.everyday !== null && r.metrics.everyday !== undefined ? ` · ${r.metrics.everyday}% everyday words` : ""}</div></div>`;
   if (extra.isReview) h += `<p class="small">${extra.reviewFailed ? "⚠ Review failed. This skill drops a level until you pass it again." : "✓ Spaced review."}</p>`;
   if (extra.nextReviewDays) h += `<p class="small muted">Next review of this scenario in ${extra.nextReviewDays} day(s).</p>`;
   h += `<div class="quote">${highlight(text, r)}</div><ul class="fb">`;
@@ -187,12 +190,12 @@ const views = {
         ${e.lesson ? `<p class="small">💡 ${esc(e.lesson)}</p>` : ""}</div>`).join("") : '<p class="muted">No entries yet.</p>'}`;
     $("#rl-check1").onclick = () => {
       const said = $("#rl-said").value; if (!said.trim()) return;
-      $("#rl-fb1").innerHTML = feedbackHTML(said, analyze(said)) + `<div class="socratic"><b>Ask yourself:</b> What did the other person need to hear first: the fact, your view, or a next step? Did anything in your reply move attention to <i>you</i> instead of the problem?</div>`;
+      $("#rl-fb1").innerHTML = feedbackHTML(said, check(said)) + `<div class="socratic"><b>Ask yourself:</b> What did the other person need to hear first: the fact, your view, or a next step? Did anything in your reply move attention to <i>you</i> instead of the problem?</div>`;
     };
     $("#rl-save").onclick = async () => {
       const said = $("#rl-said").value, rewrite = $("#rl-re").value;
       if (!said.trim()) return alert("Write what you actually said first.");
-      const a = analyze(said), b = rewrite.trim() ? analyze(rewrite) : null;
+      const a = check(said), b = rewrite.trim() ? check(rewrite) : null;
       P.recordReal(S, { situation: $("#rl-sit").value, said, rewrite, lesson: $("#rl-lesson").value, saidScore: a.score, rewriteScore: b ? b.score : null,
         saidIssues: a.issues.map(i => i.id) });
       await save();
@@ -206,8 +209,10 @@ const views = {
       <div class="card"><label for="fr">Your message</label><textarea id="fr"></textarea><button class="btn" id="frb">Check</button><div id="frf" aria-live="polite"></div></div>`;
     $("#frb").onclick = () => {
       const t = $("#fr").value; if (!t.trim()) return;
-      const r = analyze(t, { written: true });
-      $("#frf").innerHTML = feedbackHTML(t, r) + (r.issues.length ? "" : "<p>No weak habits found. Read it once more: is the most important point in the first sentence?</p>");
+      const r = check(t, { written: true }), fl = flesch(t);
+      const read = fl ? `<div class="card readability"><b>Readability:</b> ${fl.score}/100 (${fl.label}) · longest sentence ${fl.longest} words
+        ${principleDetails("plain_language")}<p class="small muted">Flesch Reading Ease. 60+ is right for most work messages. Short sentences and short words raise it.</p></div>` : "";
+      $("#frf").innerHTML = read + feedbackHTML(t, r) + (r.issues.length ? "" : "<p>No weak habits found. Read it once more: is the most important point in the first sentence?</p>");
     };
   },
 
@@ -254,7 +259,7 @@ function runScenario(id) {
       return;
     }
     clearInterval(timer);
-    const r = analyze(text, specFor(s));
+    const r = check(text, specFor(s));
     const extra = P.recordScenario(S, s, r, tryNo, text, { timed: $("#timed").checked });
     await save();
     let h = `<div class="card">` + feedbackHTML(text, r, { hideTips: tryNo === 1, extra });
@@ -325,7 +330,7 @@ function runSurgery(id) {
   $("#back").onclick = () => show("surgery");
   $("#check").onclick = async () => {
     const t = $("#ans").value; if (!t.trim()) return;
-    const spec = specFor(x), r = analyze(t, spec), before = analyze(x.weak, spec);
+    const spec = specFor(x), r = check(t, spec), before = check(x.weak, spec);
     P.recordSurgery(S, x, r, t); await save();
     $("#fb").innerHTML = `<div class="card"><p class="small muted">Original scored <b>${before.score}</b>. Problems in it: ${before.issues.map(i => "“" + esc(i.hit) + "”").join(", ") || "missing moves"}</p>` + feedbackHTML(t, r) +
       (r.passed ? `<p>Fixed. Say it out loud. ${speakBtn(t)}</p>` : `<p class="small">Keep going: rewrite and check again.</p>`) + `</div>`;
@@ -410,7 +415,7 @@ function runDiagnose() {
       </ul><div class="quote">${highlight(it.reply, it.result)}</div>
       <h3>Now fix it</h3><label for="fix">How should they have said it?</label><textarea id="fix"></textarea>
       <div class="row"><button class="btn" id="fixc">Check my fix</button><button class="btn ghost" id="nextd">Next reply →</button></div><div id="fixres"></div></div>`;
-    $("#fixc").onclick = () => { const t = $("#fix").value; if (t.trim()) $("#fixres").innerHTML = feedbackHTML(t, analyze(t, it.spec)); };
+    $("#fixc").onclick = () => { const t = $("#fix").value; if (t.trim()) $("#fixres").innerHTML = feedbackHTML(t, check(t, it.spec)); };
     $("#nextd").onclick = () => { window.scrollTo(0, 0); runDiagnose(); };
   };
 }
@@ -430,6 +435,7 @@ $$("#nav button").forEach(b => b.onclick = () => show(b.dataset.view));
     C = content; S = state;
     requestPersistence();
     show("home");
+    loadStats().then(s => { STATS = s; POOL = null; }).catch(() => { /* app works without word statistics */ });
   } catch (e) {
     app.innerHTML = `<div class="card"><h2>Couldn't start</h2><p>${esc(e.message)}</p><p class="small muted">If this is the first visit, you need a connection once so the app can be saved for offline use.</p></div>`;
   }

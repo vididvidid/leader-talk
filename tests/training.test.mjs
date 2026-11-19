@@ -45,7 +45,7 @@ for (const rp of content.roleplays) {
 
 test("habits cover every non-grammar issue", () => {
   const covered = new Set(HABITS.flatMap(h => h.issues || []));
-  const skip = new Set(["lowercase_i", "double_dots", "forbid"]);
+  const skip = new Set(["lowercase_i", "double_dots", "forbid", "spelling"]);
   for (const [id] of ISSUES) if (!skip.has(id)) assert.ok(covered.has(id), `issue ${id} has no habit`);
 });
 test("diagnose pool: plenty of items, each with an answer key", () => {
